@@ -3,8 +3,7 @@ AngularJS SaaS/Admin Template and Starter Kit
 
 Stop paying for an admin template when you can get more with this awesome little gem. Using AngularJS best practices, tons of examples, Gulp runs a Restify server and a Socket.IO server for realtime data streaming into your new front-end UI.
 
-<iframe width="420" height="315" src="https://www.youtube.com/embed/bGeSYQM51Gs" frameborder="0" allowfullscreen></iframe>
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/bGeSYQM51Gs/0.jpg)](http://www.youtube.com/watch?v=bGeSYQM51Gs "Kingswell SaaS/Admin Template")
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/O0bRIxzrKHQ/0.jpg)](http://www.youtube.com/watch?v=O0bRIxzrKHQ "Kingswell SaaS/Admin Template")
 
 ##Features
 
