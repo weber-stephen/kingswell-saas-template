@@ -1,7 +1,36 @@
 # Kingswell SaaS and Admin Template
-SaaS Template and Starter Kit
+AngularJS SaaS/Admin Template and Starter Kit
 
-A template for SaaS and administration.
+Stop paying for an admin template when you can get more with this awesome little gem. Using AngularJS best practices, tons of examples, Gulp runs a Restify server and a Socket.IO server for realtime data streaming into your new front-end UI.
+
+<iframe width="420" height="315" src="https://www.youtube.com/embed/bGeSYQM51Gs" frameborder="0" allowfullscreen></iframe>
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/bGeSYQM51Gs/0.jpg)](http://www.youtube.com/watch?v=bGeSYQM51Gs "Kingswell SaaS/Admin Template")
+
+##Features
+
+###What You Get
+1. Using Angular's Best Practices
+2. Basically 3 commands and you are developing
+3. Best of Breed Libraries (Angular, Gulp, Bower, SASS)
+4. Fully Commented and Documentation
+5. Over 15 pages of elements with easy copy and paste code
+6. 2 Login Screens
+7. 2 Register Screens
+
+###Development
+1. Using BrowserSync for quick development and time-saving synchronized browser testing (http://www.browsersync.io/)
+2. Using Gulp to compile, build and show on your local server with a single save of a file
+3. Clean, DRY (Don't repeat yourself), Commented and Easy To Read Code
+
+###Design
+1. Using Google's Material Design Pattern to make designing beautiful interfaces a breeze
+2. Using SASS for each component, view, theme and bower component
+3. Easy theming with either Material Design or your own custom design with example SASS theme
+
+###Technology
+1. Hooked up to NodeJS Restify Server for RESTful data
+2. Hooked up to a NodeJS Socket.IO Server for Realtime Data (Server Built In To Gulp Script)
+3. Fully implemented build system to save you hours
 
 ## Installation
 
