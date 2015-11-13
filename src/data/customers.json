@@ -1,0 +1,32 @@
+[
+  {
+    "customer_id":"1",
+    "from_name":"Mark Cubano",
+    "timestamp":"6 months ago"
+  },
+  {
+    "customer_id":"2",
+    "from_name":"Jim Hamilten",
+    "timestamp":"7 months ago"
+  },
+  {
+    "customer_id":"3",
+    "from_name":"Elona Musky",
+    "timestamp":"8 months ago"
+  },
+  {
+    "customer_id":"4",
+    "from_name":"Daniel Ekcart",
+    "timestamp":"9 months ago"
+  },
+  {
+    "customer_id":"5",
+    "from_name":"Chris Kane",
+    "timestamp":"10 months ago"
+  },
+  {
+    "customer_id":"6",
+    "from_name":"Able Smith",
+    "timestamp":"11 months ago"
+  }
+]

@@ -1,0 +1,168 @@
+<div class="radio-buttons-view">
+  <md-content layout-padding layout-margin>
+
+    <!-- Start Radio Buttons -->
+    <p>Selected Value: <span class="radioValue">{{ data.group1 }}</span> </p>
+    <md-radio-group ng-model="data.group1" flex>
+      <md-radio-button value="Apple" class="md-primary">Apple</md-radio-button>
+      <md-radio-button value="Banana"> Banana </md-radio-button>
+      <md-radio-button value="Mango">Mango</md-radio-button>
+    </md-radio-group>
+
+    <section layout="row" layout-padding>
+        <div class="code-container" flex>
+          <div hljs include="'exampleCode1'">
+          </div>
+          <md-button class="copy-btn" clipboard text="getExample('exampleCode1')">Copy</md-button>
+        </div>
+    </section>
+
+    <hr />
+
+    <p>Selected Value: <span class="radioValue">{{ data.group2 }}</span></p>
+    <md-radio-group ng-model="data.group2" class="md-primary">
+      <md-radio-button ng-repeat="d in radioData"
+                       ng-value="d.value"
+                       ng-disabled=" d.isDisabled "
+                       ng-class="{'md-align-top-left': $index==1}" >
+          {{ d.label }}<br/>
+        <span class="ipsum" ng-if="$index == 1">
+          Duis placerat lectus et justo mollis, nec sodales orci congue. Vestibulum semper non urna ac suscipit.
+          Vestibulum tempor, ligula id laoreet hendrerit, massa augue iaculis magna,
+          sit amet dapibus tortor ligula non nibh.
+        </span>
+      </md-radio-button>
+    </md-radio-group>
+    <p>
+      <md-button class="md-raised" ng-click="addItem()" type="button">Add</md-button>
+      <md-button class="md-raised" ng-click="removeItem()" type="button">Remove</md-button>
+    </p>
+
+    <section layout="row" layout-padding>
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="HTML">
+          <div class="code-container" flex>
+            <div hljs include="'exampleCode2HTML'">
+            </div>
+            <md-button class="copy-btn" clipboard text="getExample('exampleCode2HTML')">Copy</md-button>
+          </div>
+        </md-tab>
+        <md-tab label="JS">
+          <div class="code-container" flex>
+            <div hljs include="'exampleCode2JS'">
+            </div>
+            <md-button class="copy-btn" clipboard text="getExample('exampleCode2JS')">Copy</md-button>
+          </div>
+        </md-tab>
+      </md-tabs>
+    </section>
+    
+    <hr />
+
+    <p style="margin-bottom: 0;">Graphic radio buttons need to be labeled with the <code>aria-label</code> attribute.</p>
+    <p style="margin-top: 0;">Selected Avatar: <span class="radioValue">{{ data.group3 }}</span></p>
+    <md-radio-group ng-model="data.group3">
+      <md-radio-button ng-repeat="it in avatarData"
+                       ng-value="it.value"
+                       aria-label="{{it.title}}">
+          <img ng-src="img/profiles/{{it.img}}.jpg" />
+      </md-radio-button>
+    </md-radio-group>
+
+    <section layout="row" layout-padding class="margin-bottom-50">
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="HTML">
+          <div class="code-container" flex>
+            <div hljs include="'exampleCode3HTML'">
+            </div>
+            <md-button class="copy-btn" clipboard text="getExample('exampleCode3HTML')">Copy</md-button>
+          </div>
+        </md-tab>
+        <md-tab label="JS">
+          <div class="code-container" flex>
+            <div hljs include="'exampleCode3JS'">
+            </div>
+            <md-button class="copy-btn" clipboard text="getExample('exampleCode3JS')">Copy</md-button>
+          </div>
+        </md-tab>
+      </md-tabs>
+    </section>
+    <!-- End Radio Buttons -->
+
+  </md-content>
+<script type="text/ng-template" id="exampleCode1">
+<p>Selected Value: <span class="radioValue">{{ data.group1 }}</span> </p>
+<md-radio-group ng-model="data.group1" flex>
+  <md-radio-button value="Apple" class="md-primary">Apple</md-radio-button>
+  <md-radio-button value="Banana"> Banana </md-radio-button>
+  <md-radio-button value="Mango">Mango</md-radio-button>
+</md-radio-group>
+</script>
+
+<script type="text/ng-template" id="exampleCode2HTML">
+<p>Selected Value: <span class="radioValue">{{ data.group2 }}</span></p>
+<md-radio-group ng-model="data.group2" class="md-primary">
+  <md-radio-button ng-repeat="d in radioData"
+                   ng-value="d.value"
+                   ng-disabled=" d.isDisabled "
+                   ng-class="{'md-align-top-left': $index==1}" >
+      {{ d.label }}<br/>
+    <span class="ipsum" ng-if="$index == 1">
+      Duis placerat lectus et justo mollis, nec sodales orci congue. Vestibulum semper non urna ac suscipit.
+      Vestibulum tempor, ligula id laoreet hendrerit, massa augue iaculis magna,
+      sit amet dapibus tortor ligula non nibh.
+    </span>
+  </md-radio-button>
+</md-radio-group>
+<p>
+  <md-button class="md-raised" ng-click="addItem()" type="button">Add</md-button>
+  <md-button class="md-raised" ng-click="removeItem()" type="button">Remove</md-button>
+</p>
+</script>
+
+<script type="text/ng-template" id="exampleCode2JS">
+$scope.radioData = [
+  { label: '1', value: 1 },
+  { label: '2', value: 2 },
+  { label: '3', value: '3', isDisabled: true },
+  { label: '4', value: '4' }
+];
+
+$scope.addItem = function() {
+  var r = Math.ceil(Math.random() * 1000);
+  $scope.radioData.push({ label: r, value: r });
+};
+
+$scope.removeItem = function() {
+  $scope.radioData.pop();
+};
+</script>
+
+<script type="text/ng-template" id="exampleCode3HTML">
+<p style="margin-bottom: 0;">Graphic radio buttons need to be labeled with the <code>aria-label</code> attribute.</p>
+<p style="margin-top: 0;">Selected Avatar: <span class="radioValue">{{ data.group3 }}</span></p>
+<md-radio-group ng-model="data.group3">
+  <md-radio-button ng-repeat="it in avatarData"
+                   ng-value="it.value"
+                   aria-label="{{it.title}}">
+      <img ng-src="img/profiles/{{it.img}}.jpg" />
+  </md-radio-button>
+</md-radio-group>
+</script>
+
+<script type="text/ng-template" id="exampleCode3JS">
+$scope.avatarData = [{
+    img: "profile2",
+    title: 'avatar 1',
+    value: 'avatar-1'
+  },{
+    img: "profile3",
+    title: 'avatar 2',
+    value: 'avatar-2'
+  },{
+    img: "profile4",
+    title: 'avatar 3',
+    value: 'avatar-3'
+}];
+</script>
+</div>

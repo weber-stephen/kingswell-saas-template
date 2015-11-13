@@ -1,0 +1,15 @@
+.modals-view {
+  .dialog-demo-content {
+    .md-button {
+      max-width: 200px;
+    }
+  }
+  md-tabs {
+    min-width: 600px;
+
+    md-tab-content {
+      min-width: 100%;
+    }
+
+  }
+}

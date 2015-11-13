@@ -1,0 +1,144 @@
+<div class="form-controls-view">
+  <md-content layout-padding layout-margin>
+
+    <!-- Start Slider -->
+    <div class="md-title">Slider</div>
+    <section layout="row" layout-padding>
+      <p>Sliders are a great way to protect against bad data and also provide an easy way for people on desktop or mobile devices to input numbers quickly. Its especially great for elements on screen that react to the number.<br>
+      <a href="https://material.angularjs.org/latest/demo/slider">Documentation</a><br>
+      <a href="https://material.angularjs.org/latest/api/directive/mdSlider">API Documentation</a></p>
+    </section>
+    <section layout="row" layout-padding>
+      <md-input-container flex="50">
+        <div layout>
+          <div flex="10" layout layout-align="center center">
+            <span class="md-body-1">Label</span>
+          </div>
+          <md-slider flex min="0" max="100" ng-model="data.slider" aria-label="slider1" >
+          </md-slider>
+          <div flex="20" layout layout-align="center center">
+            <span flex aria-label="red" aria-controls="slider1">{{data.slider}}</span>
+          </div>
+        </div>
+      </md-input-container>
+    </section>
+
+    <div class="md-title">Interval Slider</div>
+    <section layout="row" layout-padding>
+      <md-input-container flex="50">
+        <div layout>
+          <div flex="10" layout layout-align="center center">
+            <span class="md-body-1">Label</span>
+          </div>
+          <md-slider flex md-discrete ng-model="data.intervalSlider" step="1" min="1" max="5" aria-label="intervalSlider">
+          </md-slider>
+          <div flex="20" layout layout-align="center center">
+            <span flex aria-label="red" aria-controls="intervalSlider">{{data.intervalSlider}}</span>
+          </div>
+        </div>
+      </md-input-container>
+    </section>
+
+    <div class="md-title">Disabled Slider</div>
+    <section layout="row" layout-padding>
+      <md-input-container flex="50">
+        <div layout>
+          <div flex="10" layout layout-align="center center">
+            <span class="md-body-1">Label</span>
+          </div>
+          <md-slider ng-model="data.disabledSlider" ng-disabled="true" aria-label="disabledSlider1"></md-slider>
+          <div flex="20" layout layout-align="center center">
+            <span flex aria-controls="disabledSlider1">{{data.disabledSlider}}</span>
+          </div>
+        </div>
+      </md-input-container>
+    </section>
+
+    <div class="md-title">Disabled, Discrete Slider</div>
+    <section layout="row" layout-padding>
+      <md-input-container flex="50">
+        <div layout>
+          <div flex="10" layout layout-align="center center">
+            <span class="md-body-1">Label</span>
+          </div>
+          <md-slider ng-model="data.disabledDiscreteSlider" ng-disabled="true" step="3" md-discrete min="0" max="10" aria-label="disabledDiscreteSlider"></md-slider>
+          <div flex="20" layout layout-align="center center">
+            <span flex aria-controls="disabledDiscreteSlider">{{data.disabledDiscreteSlider}}</span>
+          </div>
+        </div>
+      </md-input-container>
+    </section>
+    <section layout="row" layout-padding  class="margin-bottom-50">
+        <div class="code-container" flex>
+          <div hljs include="'exampleCode1'">
+          </div>
+          <md-button class="copy-btn" clipboard text="getExample('exampleCode1')">Copy</md-button>
+        </div>
+    </section>
+    <!-- End Slider -->
+
+  </md-content>
+<script type="text/ng-template" id="exampleCode1">
+<div class="md-title">Slider</div>
+  <section layout="row" layout-padding>
+    <md-input-container flex="50">
+      <div layout>
+        <div flex="10" layout layout-align="center center">
+          <span class="md-body-1">Label</span>
+        </div>
+        <md-slider flex min="0" max="100" ng-model="data.slider" aria-label="slider1" >
+        </md-slider>
+        <div flex="20" layout layout-align="center center">
+          <span flex aria-label="red" aria-controls="slider1">{{data.slider}}</span>
+        </div>
+      </div>
+    </md-input-container>
+  </section>
+
+  <div class="md-title">Interval Slider</div>
+  <section layout="row" layout-padding>
+    <md-input-container flex="50">
+      <div layout>
+        <div flex="10" layout layout-align="center center">
+          <span class="md-body-1">Label</span>
+        </div>
+        <md-slider flex md-discrete ng-model="data.intervalSlider" step="1" min="1" max="5" aria-label="intervalSlider">
+        </md-slider>
+        <div flex="20" layout layout-align="center center">
+          <span flex aria-label="red" aria-controls="intervalSlider">{{data.intervalSlider}}</span>
+        </div>
+      </div>
+    </md-input-container>
+  </section>
+
+  <div class="md-title">Disabled Slider</div>
+  <section layout="row" layout-padding>
+    <md-input-container flex="50">
+      <div layout>
+        <div flex="10" layout layout-align="center center">
+          <span class="md-body-1">Label</span>
+        </div>
+        <md-slider ng-model="data.disabledSlider" ng-disabled="true" aria-label="disabledSlider1"></md-slider>
+        <div flex="20" layout layout-align="center center">
+          <span flex aria-controls="disabledSlider1">{{data.disabledSlider}}</span>
+        </div>
+      </div>
+    </md-input-container>
+  </section>
+
+  <div class="md-title">Disabled, Discrete Slider</div>
+  <section layout="row" layout-padding>
+    <md-input-container flex="50">
+      <div layout>
+        <div flex="10" layout layout-align="center center">
+          <span class="md-body-1">Label</span>
+        </div>
+        <md-slider ng-model="data.disabledDiscreteSlider" ng-disabled="true" step="3" md-discrete min="0" max="10" aria-label="disabledDiscreteSlider"></md-slider>
+        <div flex="20" layout layout-align="center center">
+          <span flex aria-controls="disabledDiscreteSlider">{{data.disabledDiscreteSlider}}</span>
+        </div>
+      </div>
+    </md-input-container>
+  </section>
+</script>
+</div>

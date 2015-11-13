@@ -1,0 +1,28 @@
+<div class="datatables-view" >
+  <md-content>
+    <md-data-table-toolbar>
+      <h2 class="md-title">Github Users</h2>
+    </md-data-table-toolbar>
+
+    <md-data-table-container>
+      <table md-data-table md-row-select="selected" md-progress="deferred">
+        <thead md-order="query.order" md-trigger="onOrderChange">
+          <tr>
+            <th name="Avatar"></th>
+            <th order-by="id" name="User ID"></th>
+            <th name="Username"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr md-auto-select ng-repeat="github_user in github.items">
+            <td><a href="{{::github_user.html_url}}"><img class="img-circle" ng-src="{{::github_user.avatar_url}}"/></a></td>
+            <td>{{::github_user.id}}</td>
+            <td>{{::github_user.login}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-data-table-container>
+
+    <md-data-table-pagination md-limit="query.per_page" md-page="query.page" md-total="{{github.total_count}}" md-trigger="onPaginationChange"></md-data-table-pagination>
+  </md-content>
+</div>

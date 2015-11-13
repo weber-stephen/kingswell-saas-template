@@ -1,0 +1,200 @@
+<div class="validation-view">
+    
+    <section class="documentation-block" layout layout-margin layout-padding layout-align="center center" class="margin-top-20">
+        <div flex="60">
+            <p class="text-center">
+            AngularJS handles validation beautifully using ng-messages library and allows you to do many of the normal validations right off the bat and still give you the flexibility to do your own validation. Below is many of the normal validations (phone, email) and a username check done through remote validation. The following usernames are taken: "username", "test", "john", "jack" and "peter".
+            <br><br>
+            <a href="https://material.angularjs.org/latest/demo/input">Form API Documentation</a><br>
+            <a href="https://docs.angularjs.org/api/ngMessages/directive/ngMessages">NG-Messages API Documentation</a>
+            </p>
+        </div>
+    </section>
+
+    <section layout layout-align="center center" class="margin-top-20">
+
+        <form name="exampleForm" class="md-whiteframe-1dp" layout-margin layout-padding flex ng-submit="submit()" novalidate>
+            <legend>Form Example</legend>
+            <md-input-container>
+                <label>First Name:</label>
+                <input type="text" name="userFirstName" ng-model="formData.firstName" required />
+                <div ng-if="interacted(exampleForm.userFirstName)" ng-messages="exampleForm.userFirstName.$error" >
+                    <div ng-message="required">This field is required</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Last Name:</label>
+                <input type="text" name="userLastName" ng-model="formData.lastName" required />
+                <div ng-if="interacted(exampleForm.userLastName)" ng-messages="exampleForm.userLastName.$error">
+                  <div ng-message="required">This field is required</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float">
+                <label>Username Check (Remote Validation)</label>
+                <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+                <input type="text" name="username" ng-model="formData.username" required min="1" /> 
+                <div ng-if="interacted(exampleForm.username)" ng-messages="exampleForm.username.$error" >
+                    <div ng-message="required">You did not enter a username value</div>
+                    <div ng-message="loading">Checking...</div>
+                    <div ng-message="username-taken">Sorry, but {{ $parent.data.username }} is already taken</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Email Address:</label>
+                <input type="email" name="userEmail" ng-model="formData.email" required />
+                <div ng-if="interacted(exampleForm.userEmail)"  ng-messages="exampleForm.userEmail.$error">
+                  <div ng-message="required">This field is required</div>
+                  <div ng-message="email">Your email address is invalid</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Phone Number:</label>
+                <input type="email" name="userPhoneNumber" ng-model="formData.phoneNumber" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" required/>
+                <div ng-if="interacted(exampleForm.userPhoneNumber)" ng-messages="exampleForm.userPhoneNumber.$error">
+                  <div ng-message="required">This field is required</div>
+                  <div ng-message="pattern">Must be a valid 10 digit phone number</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label>User Message:</label>
+                <textarea type="text" name="userMessage" class="form-control" rows="4" ng-model="formData.message" ng-minlength="10" ng-maxlength="100" required></textarea>
+                <div ng-if="interacted(exampleForm.userMessage)" ng-messages="exampleForm.userMessage.$error">
+                  <div ng-message="required">This field is required</div>
+                  <div ng-message="minlength">Message must be over 10 characters</div>
+                  <div ng-message="maxlength">Message must not exceed 100 characters</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="margin-bottom-30">
+                <label>Odd Number (Custom Validation)</label>
+                <input type="number" name="odd" ng-model="formData.odd" required min="1" odd /> 
+                <div ng-if="interacted(exampleForm.odd)" ng-messages="exampleForm.odd.$error">
+                  <div ng-message="required">This field is required</div>
+                  <div ng-message="minlength">Message must be over 10 characters</div>
+                  <span ng-message="odd">Odd numbers only</span>
+                </div>
+            </md-input-container>
+
+            <div class="form-actions" layout="row" layout-align="start center">
+                <md-button class="md-raised">Cancel</md-button>
+                <md-button class="md-raised md-primary">Submit</md-button>
+            </div>
+
+        </form>
+
+    </section>
+
+    <section layout="row" layout-align="center center" layout-padding class="margin-bottom-50">
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="HTML">
+          <div class="code-container" flex>
+            <div hljs include="'exampleCode1HTML'">
+            </div>
+            <md-button class="copy-btn" clipboard text="getExample('exampleCode1HTML')">Copy</md-button>
+          </div>
+        </md-tab>
+        <md-tab label="JS">
+          <div class="code-container" flex>
+            <div hljs include="'exampleCode1JS'">
+            </div>
+            <md-button class="copy-btn" clipboard text="getExample('exampleCode1JS')">Copy</md-button>
+          </div>
+        </md-tab>
+      </md-tabs>
+    </section>
+
+<script type="text/ng-template" id="exampleCode1HTML">
+<form name="exampleForm" class="md-whiteframe-1dp" layout-margin layout-padding flex ng-submit="submit()" novalidate>
+    <legend>Form Example</legend>
+    <md-input-container>
+        <label>First Name:</label>
+        <input type="text" name="userFirstName" ng-model="formData.firstName" required />
+        <div ng-if="interacted(exampleForm.userFirstName)" ng-messages="exampleForm.userFirstName.$error" >
+            <div ng-message="required">This field is required</div>
+        </div>
+    </md-input-container>
+
+    <md-input-container>
+        <label>Last Name:</label>
+        <input type="text" name="userLastName" ng-model="formData.lastName" required />
+        <div ng-if="interacted(exampleForm.userLastName)" ng-messages="exampleForm.userLastName.$error">
+          <div ng-message="required">This field is required</div>
+        </div>
+    </md-input-container>
+
+    <md-input-container class="md-icon-float">
+        <label>Username Check(Remote Validation)</label>
+        <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+        <input type="text" name="username" ng-model="formData.username" username-validator required min="1" /> 
+        <div ng-if="interacted(exampleForm.username)" ng-messages="exampleForm.username.$error" >
+            <div ng-message="required">You did not enter a username value</div>
+            <div ng-message="loading">Checking database...</div>
+            <div ng-message="username-taken">Sorry, but {{ $parent.data.username }} is already taken</div>
+        </div>
+    </md-input-container>
+
+    <md-input-container>
+        <label>Email Address:</label>
+        <input type="email" name="userEmail" ng-model="formData.email" required />
+        <div ng-if="interacted(exampleForm.userEmail)"  ng-messages="exampleForm.userEmail.$error">
+          <div ng-message="required">This field is required</div>
+          <div ng-message="email">Your email address is invalid</div>
+        </div>
+    </md-input-container>
+
+    <md-input-container>
+        <label>Phone Number:</label>
+        <input type="email" name="userPhoneNumber" ng-model="formData.phoneNumber" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" required/>
+        <div ng-if="interacted(exampleForm.userPhoneNumber)" ng-messages="exampleForm.userPhoneNumber.$error">
+          <div ng-message="required">This field is required</div>
+          <div ng-message="pattern">Must be a valid 10 digit phone number</div>
+        </div>
+    </md-input-container>
+
+    <md-input-container>
+        <label>User Message:</label>
+        <textarea type="text" name="userMessage" class="form-control" rows="4" ng-model="formData.message" ng-minlength="10" ng-maxlength="100" required></textarea>
+        <div ng-if="interacted(exampleForm.userMessage)" ng-messages="exampleForm.userMessage.$error">
+          <div ng-message="required">This field is required</div>
+          <div ng-message="minlength">Message must be over 10 characters</div>
+          <div ng-message="maxlength">Message must not exceed 100 characters</div>
+        </div>
+    </md-input-container>
+
+    <md-input-container class="margin-bottom-30">
+        <label>Custom Validation Example - Odd Numbers</label>
+        <input type="number" name="odd" ng-model="formData.odd" required min="1" odd /> 
+        <div ng-if="interacted(exampleForm.odd)" ng-messages="exampleForm.odd.$error">
+          <div ng-message="required">This field is required</div>
+          <div ng-message="minlength">Message must be over 10 characters</div>
+          <span ng-message="odd">Odd numbers only</span>
+        </div>
+    </md-input-container>
+
+    <div class="form-actions" layout="row" layout-align="start center">
+        <md-button class="md-raised">Cancel</md-button>
+        <md-button class="md-raised md-primary">Submit</md-button>
+    </div>
+
+</form>
+</script>
+
+<script type="text/ng-template" id="exampleCode1JS">
+$scope.formData = {};
+
+$scope.submitted = false;
+
+$scope.submit = function() {
+$scope.submitted = true;
+};
+
+$scope.interacted = function(field) {
+return $scope.submitted || field.$dirty;
+};
+</script>
+</md-content>

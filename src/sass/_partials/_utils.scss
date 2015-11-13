@@ -1,0 +1,40 @@
+/* Margin Top and Bottom */
+$list: 10 20 30 40 50 60 70 80 90 100;
+@each $item in $list {
+  .margin-top-#{$item} {
+    margin-top: #{$item}px;
+  }
+  .margin-bottom-#{$item} {
+    margin-bottom: #{$item}px;
+  }
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide {
+    display: none !important;
+}
+
+.copy-btn {
+  color: #fff;
+}

@@ -1,0 +1,194 @@
+<div class="cards-view">
+  <section class="margin-bottom-40">
+
+    <div class="row documentation-block" layout-margin layout-padding layout-align="center center">
+      <div flex="100">
+        <p class="text-center">A card is a piece of paper with unique related data that serves as an entry point to more detailed information. For example, a card could contain a photo, text, and a link about a single subject.<br><br>Cards have a constant width and variable height. The maximum height is limited to the height of the available space on a platform, but it can temporarily expand (for example, to display a comment field). Cards do not flip over to reveal information on the back.<br><br>
+        <span>View Material Design Spec <a href="https://www.google.com/design/spec/components/cards.html">Here</a></span>
+        </p>
+      </div>
+    </div>
+
+    <div layout="row" layout-align="center center">
+      <div>
+        <md-card id="example1">
+          <img ng-src="img/photos/mountains.jpg" class="md-card-image" alt="Mountains From Unsplash">
+          <md-card-content>
+            <h2 class="md-title">Outdoors</h2>
+            <p>
+              Nothing but a beautiful view here.
+            </p>
+          </md-card-content>
+          <div class="md-actions border-top" layout="row" layout-align="end center">
+            <md-button>View</md-button>
+            <md-button>Book Now</md-button>
+          </div>
+          <div class="md-actions top">
+            <md-button><md-icon md-font-library="material-icons">share</md-icon></md-button>
+          </div>
+        </md-card>
+      </div>
+    </div>
+
+    <div layout="row" layout-align="center center">
+      <div class="code-container" flex>
+        <div hljs include="'exampleCode1'">
+        </div>
+        <md-button class="copy-btn" clipboard text="getExample('exampleCode1')">Copy</md-button>
+      </div>
+    </div>
+
+  </section>
+
+  <section layout="row" layout-align="center center">
+    <div>
+      <md-card id="example2">
+        <div class="md-card-header" ng-style="{'height': '150px','background-image': 'url(img/photos/jellyfish.jpg)'}">
+          <div class="gradient">
+            <h2 class="md-title">Sealife</h2>
+          </div>
+        </div>
+        <md-card-content>
+          <p>
+            Life is sweeter down where its deeper. This one has a nice little gradient for the title that overlays the image.
+          </p>
+        </md-card-content>
+        <div class="md-actions" layout="row" layout-align="end center">
+          <md-button>View</md-button>
+          <md-button>Book Now</md-button>
+        </div>
+      </md-card>
+    </div>
+  </section>
+
+  <section layout="row" layout-align="center center">
+    <div>
+      <md-card id="example3">
+        <div class="md-card-header" ng-style="{'height': '150px','background-image': 'url(img/photos/plymouth.jpg)'}">
+          <h2 class="md-title">Cars</h2>
+        </div>
+        <md-card-content>
+          <p>
+            They go vroom vroom and you can too.
+          </p>
+        </md-card-content>
+        <div class="md-actions border-top" layout="row" layout-align="start center">
+          <md-button>View</md-button>
+        </div>
+      </md-card>
+    </div>
+  </section>
+
+  <section layout="row" layout-align="center center">
+    <div>
+      <md-card class="square" id="example4">
+        <img ng-src="img/photos/woman.jpg">
+        <div class="md-card-header">
+          <h2 class="md-title">Cars</h2>
+        </div>
+      </md-card>
+    </div>
+  </section>
+
+  <section layout="row" layout-align="center center">
+    <div layout="row" layout-align="center center">
+      <div class="code-container" flex>
+        <div hljs include="'exampleCode2'">
+        </div>
+        <md-button class="copy-btn" clipboard text="getExample('exampleCode2')">Copy</md-button>
+      </div>
+    </div>
+  </section>
+
+  <script type="text/ng-template" id="exampleCode1">
+<style type="text/css">
+  #example1 {
+    width: 300px;
+  }
+</style>
+
+<md-card id="example1">
+  <img ng-src="img/photos/mountains.jpg" class="md-card-image" alt="Mountains From Unsplash">
+  <md-card-content>
+    <h2 class="md-title">Outdoors</h2>
+    <p>
+      Nothing but a beautiful view here.
+    </p>
+  </md-card-content>
+  <div class="md-actions border-top" layout="row" layout-align="end center">
+    <md-button>View</md-button>
+    <md-button>Book Now</md-button>
+  </div>
+  <div class="md-actions top">
+    <md-button><md-icon md-font-library="material-icons">share</md-icon></md-button>
+  </div>
+</md-card>
+  </script>
+
+  <script type="text/ng-template" id="exampleCode2">
+<style type="text/css">
+  #example2 {
+    width: 300px;
+  }
+
+  #example2 {
+    width: 300px;
+  }
+
+  #example4 {
+    width: 250px;
+    height: 250px;
+  }
+</style>
+
+<section layout="row" layout-align="center center">
+  <div>
+    <md-card id="example2">
+      <div class="md-card-header" ng-style="{'height': '150px','background-image': 'url(img/photos/jellyfish.jpg)'}">
+        <div class="gradient">
+          <h2 class="md-title">Sealife</h2>
+        </div>
+      </div>
+      <md-card-content>
+        <p>
+          Life is sweeter down where its deeper. This one has a nice little gradient for the title that overlays the image.
+        </p>
+      </md-card-content>
+      <div class="md-actions" layout="row" layout-align="end center">
+        <md-button>View</md-button>
+        <md-button>Book Now</md-button>
+      </div>
+    </md-card>
+  </div>
+</section>
+
+<section layout="row" layout-align="center center">
+  <div>
+    <md-card id="example3">
+      <div class="md-card-header" ng-style="{'height': '150px','background-image': 'url(img/photos/plymouth.jpg)'}">
+        <h2 class="md-title">Cars</h2>
+      </div>
+      <md-card-content>
+        <p>
+          They go vroom vroom and you can too.
+        </p>
+      </md-card-content>
+      <div class="md-actions border-top" layout="row" layout-align="start center">
+        <md-button>View</md-button>
+      </div>
+    </md-card>
+  </div>
+</section>
+
+<section layout="row" layout-align="center center">
+  <div>
+    <md-card class="square" id="example4">
+      <img ng-src="img/photos/woman.jpg">
+      <div class="md-card-header">
+        <h2 class="md-title">Cars</h2>
+      </div>
+    </md-card>
+  </div>
+</section>
+  </script>
+</div>

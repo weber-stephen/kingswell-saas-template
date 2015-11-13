@@ -1,0 +1,24 @@
+.lists-view {
+  #example1 {
+    max-width: 600px;
+
+    .md-toolbar-tools {
+      md-icon {
+        margin-right: 10px;
+      }
+    }
+
+    md-content {
+      max-height: 400px;
+    }
+
+  }
+  md-tabs {
+    min-width: 600px;
+
+    md-tab-content {
+      min-width: 100%;
+    }
+
+  }
+}

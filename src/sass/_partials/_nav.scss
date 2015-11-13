@@ -1,0 +1,176 @@
+md-sidenav {
+
+  &.md-locked-open {
+      width: 254px;
+      min-width: 254px;
+      max-width: 254px;
+  }
+
+  .nav-header {
+    height: 63px;
+
+    .logo {
+      height: 30px;
+      width: auto;
+      display: inline;
+      margin-right: 15px;
+      margin-left: 15px;
+    }
+
+    .md-heading-1 {
+      text-align: center;
+      color: #fff;
+      display: inline;
+    }
+  }
+
+	.profile-container {
+    height: 160px;
+    position: relative;
+
+    .profile-content-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+
+      .profile-menu {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 40px;
+      }
+
+      .blur-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100px;
+      }
+
+  		.profile-image {
+  			width: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+
+        img {
+          width: 100px;
+          box-shadow: 0 7px 8px -4px rgba(0,0,0,.2),0 12px 17px 2px rgba(0,0,0,.14),0 5px 22px 4px rgba(0,0,0,.12);
+        }
+
+  		}
+
+  		.profile-username {
+        position: absolute;
+        bottom: 25px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+  		}
+
+      .profile-title {
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: rgba(255,255,255,.60);
+      }
+
+    }
+
+	}
+
+	ul {
+	  margin: 0;
+    list-style: none;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+
+    li {
+			padding: 0;
+			margin-top: 3px;
+			list-style-position: inside;
+			margin: 0;
+		}
+
+		li:first-child {
+	    margin-top: 0;
+	  }
+
+	}
+
+	ul {
+    list-style: none;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+	}
+
+	.md-button {
+    border-radius: 0;
+    cursor: pointer;
+    display: block;
+    align-items: inherit;
+    line-height: 40px;
+    margin: 0;
+    max-height: 40px;
+    overflow: hidden;
+    padding: 0px 16px;
+    text-align: left;
+    text-decoration: none;
+    white-space: normal;
+    width: 100%;
+	}
+
+	.md-button-toggle .md-toggle-icon {
+    display: block;
+    margin-left: auto;
+    speak: none;
+    vertical-align: middle;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transition: transform 0.3s ease-in-out;
+    -webkit-transition: -webkit-transform 0.3s ease-in-out;
+	}
+
+	.menu-toggle-list a.md-button {
+	  display: block;
+	  padding: 0 16px 0 32px;
+	  text-transform: none;
+	  text-rendering: optimizeLegibility;
+	  font-weight: 500;
+
+    &.active {
+      background-color: rgba(0,0,0,.1);
+    }
+
+	}
+
+	.md-button-toggle .md-toggle-icon.toggled {
+	  transform: rotate(0deg);
+	  -webkit-transform: rotate(0deg);
+	}
+
+	.menu-toggle-list {
+	  overflow: hidden;
+	  position: relative;
+	  z-index: 1;
+	  -webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+	  -webkit-transition-property: height;
+	  -moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+	  -moz-transition-property: height;
+	  transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+	  transition-property: height;
+	}
+
+	menu-toggle span{
+	  padding-top: 12px;
+	  padding-bottom: 12px;
+	}
+
+}

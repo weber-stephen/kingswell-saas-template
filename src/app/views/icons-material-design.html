@@ -1,0 +1,24 @@
+<div class="icons-view">
+
+  <md-content>
+    <section layout="column" layout-margin layout-padding layout-align="center center">
+      <div layout="row" layout-margin layout-padding>
+        <md-input-container>
+            <label>Search icons</label>
+            <input type="text" ng-model="search.label" aria-invalid="false">
+        </md-input-container>
+      </div>
+      <div id="icon-container" layout="row" layout-wrap layout-align="center center">
+        <div ng-repeat="icon in icons | filter:search" class="icons-box md-whiteframe-1dp" layout="column" layout-margin layout-padding layout-align="center center">
+          <div flex>
+            <md-icon md-font-library="material-icons" class="md-48">{{ icon.class }}</md-icon>
+          </div>
+          <div flex>
+            {{icon.class}}
+          </div>
+        </div>
+      </div>
+    </section>
+  </md-content>
+
+</div>

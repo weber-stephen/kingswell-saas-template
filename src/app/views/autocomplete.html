@@ -1,0 +1,77 @@
+<div class="form-controls-view">
+  <md-content layout-padding layout-margin>
+
+    <!-- Start Autocomplete -->
+    <div class="md-title">Autocomplete</div>
+    <section layout="row" layout-padding>
+      <p>Here is a quick search item search, autocomplete and create a new page if the user wants.<br>
+      <a href="https://material.angularjs.org/latest/demo/autocomplete">Documentation</a><br>
+      <a href="https://material.angularjs.org/latest/api/directive/mdAutocomplete">API Documentation</a></p>
+    </section>
+    <section layout="row" layout-padding>
+      <label>Selected Value:</label> {{autoComplete.selectedItem}}
+    </section>
+    <section layout="row" layout-padding>
+      <label>Search Text:</label> {{autoComplete.searchText}}
+    </section>
+    <section layout="row" layout-padding>
+        <md-autocomplete
+          ng-disabled="autoComplete.isDisabled"
+          md-no-cache="autoComplete.noCache"
+          md-selected-item="autoComplete.selectedItem"
+          md-search-text-change="searchTextChange(autoComplete.searchText)"
+          md-search-text="autoComplete.searchText"
+          md-selected-item-change="selectedItemChange(item)"
+          md-items="item in querySearch(autoComplete.searchText)"
+          md-item-text="item.label"
+          md-min-length="1"
+          placeholder="Search For A Page">
+          <md-item-template>
+            <span md-highlight-text="autoComplete.searchText" md-highlight-flags="^i">{{item.label}}</span>
+          </md-item-template>
+          <md-not-found>
+            No states matching "{{searchText}}" were found.
+            <a ng-click="newPage(autoComplete.searchText)">Create a new page</a>
+          </md-not-found>
+        </md-autocomplete>
+    </section>
+    <section layout="row" layout-padding  class="margin-bottom-50">
+        <div class="code-container" flex>
+          <div hljs include="'exampleCode1'">
+          </div>
+          <md-button class="copy-btn" clipboard text="getExample('exampleCode1')">Copy</md-button>
+        </div>
+    </section>
+    <!-- End Autocomplete -->
+
+  </md-content>
+<script type="text/ng-template" id="exampleCode1">
+<section layout="row" layout-padding>
+    <label>Selected Value:</label> {{autoComplete.selectedItem}}
+  </section>
+  <section layout="row" layout-padding>
+    <label>Search Text:</label> {{autoComplete.searchText}}
+  </section>
+  <section layout="row" layout-padding>
+      <md-autocomplete
+        ng-disabled="autoComplete.isDisabled"
+        md-no-cache="autoComplete.noCache"
+        md-selected-item="autoComplete.selectedItem"
+        md-search-text-change="searchTextChange(autoComplete.searchText)"
+        md-search-text="autoComplete.searchText"
+        md-selected-item-change="selectedItemChange(item)"
+        md-items="item in querySearch(autoComplete.searchText)"
+        md-item-text="item.label"
+        md-min-length="1"
+        placeholder="Search For A Page">
+        <md-item-template>
+          <span md-highlight-text="autoComplete.searchText" md-highlight-flags="^i">{{item.label}}</span>
+        </md-item-template>
+        <md-not-found>
+          No states matching "{{searchText}}" were found.
+          <a ng-click="newPage(autoComplete.searchText)">Create a new page</a>
+        </md-not-found>
+      </md-autocomplete>
+  </section>
+</script>
+</div>

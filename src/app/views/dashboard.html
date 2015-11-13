@@ -1,0 +1,111 @@
+<div class="dashboard-view">
+
+  <md-content >
+
+    <div layout="row" layout-margin layout-padding layout-wrap layout-align="top center">
+
+      <div flex-sm="grow" flex-gt-sm="40">
+        <md-card class="goals-item dashboard-item">
+          <md-toolbar>
+            <div class="md-toolbar-tools">
+              <h2>
+                <span>Goals</span>
+              </h2>
+            </div>
+          </md-toolbar>
+          <md-content layout-margin layout-padding>
+            <div class="goal-container margin-top-20" layout="row" layout-align="center center">
+              <div flex class="sales-goal goal-item">
+                  <div easypiechart options="salesGoalsChart" percent="salesGoalsChart.data"></div>
+                  <div class="goal-label">{{salesGoalsChart.label}}</div>
+                  <div class="goal-display">{{salesGoalsChart.data}}%</div>
+              </div>
+            </div>
+            <div class="goal-container second-row" layout="row" layout-align="center center">
+              <div flex="50" class="new-customer-goal goal-item">
+                  <div easypiechart options="newCustomerGoalChart" percent="newCustomerGoalChart.data"></div>
+                  <div class="goal-label">{{newCustomerGoalChart.label}}</div>
+                  <div class="goal-display">{{newCustomerGoalChart.data}}%</div>
+              </div>
+              <div flex="50" class="unique-visitors goal-item">
+                  <div easypiechart options="uniqueVisitorGoalChart" percent="uniqueVisitorGoalChart.data"></div>
+                  <div class="goal-label">{{uniqueVisitorGoalChart.label}}</div>
+                  <div class="goal-display">{{uniqueVisitorGoalChart.data}}%</div>
+              </div>
+            </div>
+          </md-content>
+        </md-card>
+      </div>
+
+      <div flex-sm="grow" flex-gt-sm="60">
+        <md-card class="sales-item dashboard-item">
+          <md-toolbar>
+            <div class="md-toolbar-tools">
+              <h2>
+                <span>Sales</span>
+              </h2>
+            </div>
+          </md-toolbar>
+          <md-content layout-margin layout-padding>
+            <nvd3 options="salesChart.options" data="salesChart.data"></nvd3>
+          </md-content>
+        </md-card>
+      </div>
+
+      <div flex-sm="grow" flex-gt-sm="60">
+        <md-card class="server-item dashboard-item chart-card">
+          <md-toolbar>
+            <div class="md-toolbar-tools">
+              <h2>
+                <span>Server</span>
+              </h2>
+            </div>
+          </md-toolbar>
+          <md-content no-margin>
+            <div class="stat-container" layout="row" layout-align="center center">
+              <div flex="33" class="cpu-usage stat-item">
+                  <div easypiechart options="cpuUsageChart" percent="cpuUsageChart.data"></div>
+                  <div class="stat-label">{{cpuUsageChart.label}}</div>
+                  <div class="stat-display"><span count-to="{{cpuUsageChart.data}}" value="0" duration="0.5"></span>%</div>
+              </div>
+              <div flex="33" class="space-usage stat-item">
+                  <div easypiechart options="spaceUsageChart" percent="spaceUsageChart.data"></div>
+                  <div class="stat-label">{{spaceUsageChart.label}}</div>
+                  <div class="stat-display"><span count-to="{{bandwidthUsageChart.data}}" value="0" duration="0.5"></span>%</div>
+              </div>
+              <div flex="33" class="bandwidth-usage stat-item">
+                  <div easypiechart options="bandwidthUsageChart" percent="bandwidthUsageChart.data"></div>
+                  <div class="stat-label">{{bandwidthUsageChart.label}}</div>
+                  <div class="stat-display"><span count-to="{{bandwidthUsageChart.data}}" value="0" duration="0.5"></span>%</div>
+              </div>
+            </div>
+            <div class="chart-container">
+              <cjs-line id="serverChart" dataset="serverChart" responsive="true" options="serverChart.options"></cjs-line>
+            </div>
+          </md-content>
+        </md-card>
+      </div>
+
+      <div flex-sm="grow" flex-gt-sm="40">
+        <md-card class="meeting-item dashboard-item">
+          <md-toolbar>
+            <div class="md-toolbar-tools">
+              <h2>
+                <span>Meetings</span>
+              </h2>
+            </div>
+          </md-toolbar>
+          <md-list>
+            <md-list-item ng-repeat="meeting in meetings" ng-click="handleMeetingClick(item)">
+              <p>{{meeting.subject}}</p>
+              <span class="due-date-display">{{meeting.timestamp}}</span>
+            </md-list-item>
+          </md-list>
+        </md-card>
+      </div>
+
+    </div>
+
+  </md-content>
+  
+</div>

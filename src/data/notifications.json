@@ -1,0 +1,58 @@
+[
+  {
+    "id":"1",
+    "type":"alert",
+    "icon":"error",
+    "title":"Server Downage",
+    "message":"Hey there! Wondering if you want to get some lunch together?",
+    "timestamp":"now"
+  },
+  {
+    "id":"2",
+    "type":"sale",
+    "icon":"work",
+    "title":"Sale",
+    "message":"$250 Sale with Customer John Rowling",
+    "timestamp":"2 minutes ago"
+  },
+  {
+    "id":"3",
+    "type":"alert",
+    "icon":"warning",
+    "title":"Running Low On Space",
+    "message":"Your server is running low on space. Upgrade now.",
+    "timestamp":"4 minutes ago"
+  },
+  {
+    "id":"4",
+    "type":"alert",
+    "icon":"error",
+    "title":"Server Downage",
+    "message":"Hey there! Wondering if you want to get some lunch together?",
+    "timestamp":"4 hours ago"
+  },
+  {
+    "id":"5",
+    "type":"sale",
+    "icon":"work",
+    "title":"Sale",
+    "message":"$250 Sale with Customer John Rowling",
+    "timestamp":"6 hours ago"
+  },
+  {
+    "id":"6",
+    "type":"sale",
+    "icon":"work",
+    "title":"Sale",
+    "message":"$200 Sale with Customer Peter Pettigrow",
+    "timestamp":"7 hours ago"
+  },
+  {
+    "id":"7",
+    "type":"sale",
+    "icon":"work",
+    "title":"Sale",
+    "message":"$100 Sale with Customer Lloyd Dick",
+    "timestamp":"7 minutes ago"
+  }
+]

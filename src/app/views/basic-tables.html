@@ -1,0 +1,86 @@
+<div class="basic-table-view">
+  <md-content layout-margin layout-padding>
+    <form name="userForm">
+      <legend>Table Styles</legend>
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label>Bordered</label>
+          <md-select ng-model="tableSettings.bordered">
+            <md-option value="">No</md-option>
+            <md-option selected value="table-bordered">Yes</md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container flex>
+          <label>Striped</label>
+          <md-select ng-model="tableSettings.striped">
+            <md-option value="">No</md-option>
+            <md-option selected value="table-striped">Yes</md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container flex>
+          <label>Hover</label>
+          <md-select ng-model="tableSettings.hover">
+            <md-option value="">No</md-option>
+            <md-option selected value="table-hover">Yes</md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container flex>
+          <label>Color</label>
+          <md-select ng-model="tableSettings.color">
+            <md-option value="">Default</md-option>
+            <md-option value="table-mc-red">Red</md-option>
+            <md-option value="table-mc-pink">Pink</md-option>
+            <md-option value="table-mc-purple">Purple</md-option>
+            <md-option value="table-mc-deep-purple">Deep Purple</md-option>
+            <md-option value="table-mc-indigo">Indigo</md-option>
+            <md-option value="table-mc-blue">Blue</md-option>
+            <md-option selected value="table-mc-light-blue">Light Blue</md-option>
+            <md-option value="table-mc-cyan">Cyan</md-option>
+            <md-option value="table-mc-teal">Teal</md-option>
+            <md-option value="table-mc-green">Green</md-option>
+            <md-option value="table-mc-light-green">Light Green</md-option>
+            <md-option value="table-mc-lime">Lime</md-option>
+            <md-option value="table-mc-yellow">Yellow</md-option>
+            <md-option value="table-mc-amber">Amber</md-option>
+            <md-option value="table-mc-orange">Orange</md-option>
+            <md-option value="table-mc-deep-orange">Deep Orange</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+    </form>
+    <div class="table-responsive-vertical md-whiteframe-1dp">
+      <table class="table {{tableSettings.bordered}} {{tableSettings.striped}} {{tableSettings.hover}} {{tableSettings.color}}">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Hero Title</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="First Name">Bruce</td>
+            <td data-label="Last Name">Wayne</td>
+            <td data-label="Hero Title">Batman</td>
+          </tr>
+          <tr>
+            <td data-label="First Name">Peter</td>
+            <td data-label="Last Name">Parker</td>
+            <td data-label="Hero Title">Spiderman</td>
+          </tr>
+          <tr>
+            <td data-label="First Name">Bruce</td>
+            <td data-label="Last Name">Banner</td>
+            <td data-label="Hero Title">The Hulk</td>
+          </tr>
+          <tr>
+            <td data-label="First Name">Clark</td>
+            <td data-label="Last Name">Kent</td>
+            <td data-label="Hero Title">Superman</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    Credit <a href="http://codepen.io/zavoloklom/pen/IGkDz">Zavoloklom's Code Pen</a>
+  </md-content>
+</div>

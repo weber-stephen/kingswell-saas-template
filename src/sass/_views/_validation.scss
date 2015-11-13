@@ -1,0 +1,13 @@
+form[name="exampleForm"] {
+  max-width: 500px;
+}
+.validation-view {
+  md-tabs {
+    min-width: 600px;
+
+    md-tab-content {
+      min-width: 100%;
+    }
+
+  }
+}

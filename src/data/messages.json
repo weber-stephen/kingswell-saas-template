@@ -1,0 +1,53 @@
+[
+  {
+    "id":"1",
+    "profile":"profile2",
+    "from_name":"Jack Daniels",
+    "from_id":2,
+    "message":"Hey there! Wondering if you want to get some lunch together?",
+    "timestamp":"now",
+    "unread":true
+  },
+  {
+    "id":"2",
+    "profile":"profile3",
+    "from_name":"Johnnie Walker",
+    "from_id":3,
+    "message":"Where can I download that template you made?",
+    "timestamp":"2 minutes ago",
+    "unread":true
+  },
+  {
+    "id":"3",
+    "profile":"profile4",
+    "from_name":"Leonidas Spartan",
+    "from_id":4,
+    "message":"This UI Rocks! Thanks for showing me. I am going to use this on so many projects.",
+    "timestamp":"4 minutes ago",
+    "unread":true
+  },
+  {
+    "id":"4",
+    "profile":"profile5",
+    "from_name":"Pandora Box",
+    "from_id":5,
+    "message":"Client is happy. Thank goodness! Your amazing. Owe you a wiskey sour.",
+    "timestamp":"6 minutes ago"
+  },
+  {
+    "id":"5",
+    "profile":"profile6",
+    "from_name":"Jamie Fraser",
+    "from_id":6,
+    "message":"Some of your designs are pretty good, can we use you on a project I am working on?",
+    "timestamp":"1 day ago"
+  },
+  {
+    "id":"6",
+    "profile":"profile7",
+    "from_name":"Jessica Rabbit",
+    "from_id":7,
+    "message":"Have you seen that new TV show?! Its amazing! Lets get together and watch it at lunch.",
+    "timestamp":"2 days ago"
+  }
+]

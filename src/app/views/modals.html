@@ -1,0 +1,176 @@
+<div class="modals-view">
+  
+  <section class="documentation-block" layout layout-margin layout-padding layout-align="center center" class="margin-top-20">
+    <div flex="60">
+      <p class="text-center">
+        Open a dialog over the app's content. Press escape or click outside to close the dialog and send focus back to the triggering button.
+      </p>
+      <p class="text-center">
+        Note: The <b>Confirm</b> dialog does not use <code>$mdDialog.clickOutsideToClose(true)</code>.
+      </p>
+      <p class="text-center">  
+        <a href="https://material.angularjs.org/latest/demo/dialog">Documentation</a>
+      </p>
+      <p class="text-center">  
+        <a href="https://material.angularjs.org/latest/api/service/$mdDialog">API Documentation</a>
+      </p>
+    </div>
+  </section>
+
+  <div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center center">
+    <md-button class="md-primary md-raised" ng-click="showAlert($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">
+      Alert Dialog
+    </md-button>
+  </div>
+  <div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center center">
+    <md-button class="md-primary md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">
+      Confirm Dialog
+    </md-button>
+  </div>
+  <div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center center">
+    <md-button class="md-primary md-raised" ng-click="showAdvanced($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">
+      Custom Dialog
+    </md-button>
+  </div>
+  <div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center center">
+    <md-button class="md-primary md-raised" ng-click="showTabDialog($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">
+      Tab Dialog
+    </md-button>
+  </div>
+  <div ng-if="status">
+    <br/>
+    <b layout="row" layout-align="center center" class="md-padding">
+      {{status}}
+    </b>
+  </div>
+
+  <section layout="row" layout-padding class="margin-bottom-50" layout-align="center center">
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="HTML">
+        <div class="code-container" flex>
+          <div hljs include="'exampleCode1HTML'">
+          </div>
+          <md-button class="copy-btn" clipboard text="getExample('exampleCode1HTML')">Copy</md-button>
+        </div>
+      </md-tab>
+      <md-tab label="JS">
+        <div class="code-container" flex>
+          <div hljs include="'exampleCode1JS'">
+          </div>
+          <md-button class="copy-btn" clipboard text="getExample('exampleCode1JS')">Copy</md-button>
+        </div>
+      </md-tab>
+    </md-tabs>
+  </section>
+
+<script type="text/ng-template" id="exampleCode1HTML">
+<div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center center">
+  <md-button class="md-primary md-raised" ng-click="showAlert($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">
+    Alert Dialog
+  </md-button>
+</div>
+<div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center center">
+  <md-button class="md-primary md-raised" ng-click="showConfirm($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">
+    Confirm Dialog
+  </md-button>
+</div>
+<div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center center">
+  <md-button class="md-primary md-raised" ng-click="showAdvanced($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">
+    Custom Dialog
+  </md-button>
+</div>
+<div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center center">
+  <md-button class="md-primary md-raised" ng-click="showTabDialog($event)" flex-sm="100" flex-md="100" flex-gt-md="auto">
+    Tab Dialog
+  </md-button>
+</div>
+<div ng-if="status">
+  <br/>
+  <b layout="row" layout-align="center center" class="md-padding">
+    {{status}}
+  </b>
+</div>
+</script>
+
+<script type="text/ng-template" id="exampleCode1JS">
+angular.module('app')
+.controller('ModalsController', function($scope, $templateCache, $mdDialog) {
+  
+  $scope.status = '  ';
+  $scope.showAlert = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    // Modal dialogs should fully cover application
+    // to prevent interaction outside of dialog
+    $mdDialog.show(
+      $mdDialog.alert()
+        .parent(angular.element(document.querySelector('#popupContainer')))
+        .clickOutsideToClose(true)
+        .title('This is an alert title')
+        .content('You can specify some description text in here.')
+        .ariaLabel('Alert Dialog Demo')
+        .ok('Got it!')
+        .targetEvent(ev)
+    );
+  };
+  $scope.showConfirm = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+          .title('Would you like to delete your debt?')
+          .content('All of the banks have agreed to <span class="debt-be-gone">forgive</span> you your debts.')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Please do it!')
+          .cancel('Sounds like a scam');
+    $mdDialog.show(confirm).then(function() {
+      $scope.status = 'You decided to get rid of your debt.';
+    }, function() {
+      $scope.status = 'You decided to keep your debt.';
+    });
+  };
+  $scope.showAdvanced = function(ev) {
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'tpl/dialog1.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true
+    })
+    .then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+  };
+  $scope.showTabDialog = function(ev) {
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'tpl/tabDialog.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true
+    })
+        .then(function(answer) {
+          $scope.status = 'You said the information was "' + answer + '".';
+        }, function() {
+          $scope.status = 'You cancelled the dialog.';
+        });
+  };  
+
+  $scope.getExample = function(_example) {
+    return $templateCache.get(_example);
+  };
+
+});
+function DialogController($scope, $mdDialog) {
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+}
+</script>
+</div>

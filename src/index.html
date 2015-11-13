@@ -1,0 +1,274 @@
+<html lang="en" ng-app="app" ng-controller="AppController" ng-class="theme ? theme : ''" md-theme="{{theme}}" md-theme-watch>
+
+  <head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,800,900' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="initial-scale=1" />
+    <link href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <base href="/">
+    <title ng-bind="pageTitle"></title>
+  </head>
+
+  <body class="md-layout-row" ng-cloak>
+
+    <!-- BEGIN Sidebar Nav -->
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-cloak>
+      
+      <md-toolbar>
+      <header class="nav-header" layout="row" layout-align="center center">
+        <div flex>
+          <a ng-href="/">
+            <img class="logo" src="img/Logo_Web_151x131.png"><h1 class="md-heading-1">Kingswell</h1>
+          </a>
+        </div>
+      </header>
+      </md-toolbar>
+
+      <md-divider ></md-divider>
+
+      <!-- START Profile Display -->
+      <div class="profile-container" ng-show="currentUser.first_name" >
+        <div class="blur-container" ng-show="currentUser.background">
+          <img ng-src="img/photos/{{currentUser.background}}" class="blur-img" >
+        </div>
+        <div class="profile-content-container">
+          <div class="profile-image">
+            <img class="img-circle" ng-src="img/photos/{{currentUser.profile}}" >
+          </div>
+          <div class="profile-username">{{currentUser.first_name}} {{currentUser.last_name}}</div>
+          <div class="profile-title">{{currentUser.title}}</div>
+          <div class="profile-menu">
+            <md-menu>
+              <md-button aria-label="Open User Menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+                <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+              </md-button>
+              <md-menu-content width="2">
+                <md-menu-item>
+                  <md-button ng-click="handleEditUser()">
+                    <md-icon md-font-library="material-icons">edit</md-icon>
+                    Edit
+                  </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                  <md-button ng-click="handleLogout()">
+                    <md-icon md-font-library="material-icons">exit_to_app</md-icon>
+                    Logout
+                  </md-button>
+                </md-menu-item>
+              </md-menu-content>
+            </md-menu>
+          </div>
+        </div>
+      </div>
+      <!-- END Profile Display -->
+
+      <md-divider hide-gt-sm></md-divider>
+
+      <!-- START Nav -->
+      <md-content flex role="navigation">
+        <ul class="docs-menu">
+          <li ng-repeat="section in menu.sections" class="parent-list-item {{section.className || ''}}" ng-class="{'parentActive' : isSectionSelected(section)}">
+            <h2 class="menu-heading md-subhead" ng-if="section.type === 'heading'" id="heading_{{ section.name | nospace }}">
+              {{section.name}}
+            </h2>
+            <menu-link section="section" ng-if="section.type === 'link'"></menu-link>
+
+            <menu-toggle section="section" ng-if="section.type === 'toggle'"></menu-toggle>
+
+            <ul ng-if="section.children" class="menu-nested-list">
+              <li ng-repeat="child in section.children" ng-class="{'childActive' : isSectionSelected(child)}">
+                <menu-link section="child" ng-if="child.type === 'link'"></menu-link>
+
+                <menu-toggle section="child" ng-if="child.type === 'toggle'"></menu-toggle>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </md-content>
+      <!-- END Nav -->
+
+    </md-sidenav>
+    <!-- END Sidebar Nav -->
+
+    <!-- BEGIN Right Sidebar -->
+    <md-sidenav class="user-sidebar md-sidenav-right md-whiteframe-z2" md-component-id="right">
+      <md-content ng-controller="UserSidebarController" layout-padding>
+        <md-tabs md-selected="selectedSidebarTab" md-stretch-tabs="always" md-dynamic-height md-border-bottom md-autoselect >
+
+          <!-- START Messages Tab -->
+          <md-tab label="messages" class="messages">
+            <md-tab-label>
+              <md-icon md-font-library="material-icons">messages</md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <md-list>
+                <md-list-item class="md-3-line" ng-repeat="item in messages" ng-click="handleMessageClick(item)">
+                  <img ng-src="img/profiles/{{item.profile}}.jpg" class="md-avatar" alt="{{item.from_name}}" />
+                  <div class="md-list-item-text" layout="column">
+                    <h3>{{ item.from_name }}</h3>
+                    <h4 class="timestamp">{{ item.timestamp }}</h4>
+                    <p class="message-preview truncate">{{ item.message }}</p>
+                  </div>
+                </md-list-item>
+              </md-list>
+            </md-tab-body>
+          </md-tab>
+          <!-- END Messages Tab -->
+
+          <!-- START Notifications Tab -->
+          <md-tab label="notifications">
+            <md-tab-label>
+              <md-icon md-font-library="material-icons">notifications</md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <section>
+                <md-subheader class="md-primary">Alerts</md-subheader>
+                <md-list>
+                  <md-list-item class="md-3-line" ng-repeat="alert in notifications.alert">
+                    <md-icon md-font-library="material-icons">{{ alert.icon }}</md-icon>
+                    <div class="md-list-item-text" layout="column">
+                      <h3>{{ alert.title }}</h3>
+                      <h4 class="timestamp">{{ alert.timestamp }}</h4>
+                      <p class="message-preview truncate">{{ alert.message }}</p>
+                    </div>
+                  </md-list-item>
+                </md-list>
+              </section>
+              <section>
+                <md-subheader class="md-primary">Sales</md-subheader>
+                <md-list>
+                  <md-list-item class="md-3-line" ng-repeat="sale in notifications.sale">
+                    <md-icon md-font-library="material-icons">{{ sale.icon }}</md-icon>
+                    <div class="md-list-item-text" layout="column">
+                      <h3>{{ sale.title }}</h3>
+                      <h4 class="timestamp">{{ sale.timestamp }}</h4>
+                      <p class="message-preview truncate">{{ sale.message }}</p>
+                    </div>
+                  </md-list-item>
+                </md-list>
+              </section>
+            </md-tab-body>
+          </md-tab>
+          <!-- END Notifications Tab -->
+
+          <!-- START Tasks Tab -->
+          <md-tab label="tasks">
+            <md-tab-label>
+              <md-icon md-font-library="material-icons">list</md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <section>
+                <md-list>
+                  <md-list-item ng-repeat="task in tasks">
+                    <md-checkbox ng-model="task.selected" aria-label="task.text"></md-checkbox>
+                    <div class="task-text">{{task.text}}</div>
+                    <span class="due-date-display" ng-class="task.timestamp === 'Today' ? 'due-today' : ''">{{task.timestamp}}</span>
+                  </md-list-item>
+                </md-list>
+              </section>
+            </md-tab-body>
+          </md-tab>
+          <!-- END Tasks Tab -->
+
+        </md-tabs>
+      </md-content>
+    </md-sidenav>
+    <!-- END Right Sidebar -->
+
+    <md-content ng-view md-scroll-y flex id="content" >
+
+      <md-toolbar class="md-whiteframe-1dp view-toolbar">
+        <div class="md-toolbar-tools">
+
+          <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+            <md-icon aria-label="Menu" md-svg-icon="img/icons/menu.svg"></md-icon>
+          </md-button>
+
+          <h2>
+            <span ng-bind="pageTitle"></span>
+          </h2>
+
+          <span flex></span>
+
+          <!-- START - Right Side Of Top Toolbar -->
+          <div flex>
+
+            <div layout="row" layout-align="end center">
+              
+              <md-button id="notification-btn" ng-click="openMessagesSidebar()" ng-hide="isOpenRight()" aria-label="Messages" class="mdl-badge" data-badge="{{messageCount}}">
+                  <md-icon md-font-library="material-icons">messages</md-icon>
+              </md-button>
+              
+              <md-button id="notification-btn" ng-click="openNotificationsSidebar()" ng-hide="isOpenRight()" aria-label="Notifications" class="mdl-badge" data-badge="{{notificationCount}}">
+                  <md-icon md-font-library="material-icons">notifications</md-icon>
+              </md-button>
+              
+              <md-button id="notification-btn" ng-click="openTasksSidebar()" ng-hide="isOpenRight()" aria-label="Tasks" class="mdl-badge" data-badge="{{listCount}}">
+                  <md-icon md-font-library="material-icons">list</md-icon>
+              </md-button>
+
+              <!-- BEGIN Theme Selector -->
+              <md-menu>
+                <md-button id="theme-selector-btn" aria-label="Theme" ng-click="openMenu($mdOpenMenu, $event)">
+                  <md-icon md-font-library="material-icons">settings</md-icon>
+                </md-button>
+                <md-menu-content>
+                  <md-menu-item ng-repeat="theme in themes" class="theme-selector">
+                    <md-button aria-label="Theme" ng-click="handleChangeTheme(theme)" >
+                      <div layout="row" layout-align="center center">
+                        <div flex class="color-swatch" ng-style="{'background-color':theme.primary.color}"></div>
+                        <div flex class="color-swatch" ng-if="allThemeCombinations" ng-style="{'background-color':theme.accent.color}"></div>
+                      </div>
+                    </md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+              <!-- END Theme Selector -->
+
+              <!-- BEGIN Page Search -->
+              <div>
+                <md-autocomplete
+                  hide-sm
+                  md-no-cache="true"
+                  md-selected-item="searchSelectedItem"
+                  md-search-text-change="searchTextChange(searchText)"
+                  md-search-text="searchText"
+                  md-selected-item-change="selectedItemChange(item)"
+                  md-items="item in querySearch(searchText)"
+                  md-item-text="item.label"
+                  md-min-length="1"
+                  placeholder="Search...">
+                  <md-item-template>
+                    <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.label}}</span>
+                  </md-item-template>
+                  <md-not-found>
+                    No pages matching "{{searchText}}" were found.
+                  </md-not-found>
+                </md-autocomplete>
+              </div>
+              <!-- END Page Search -->
+            </div>
+
+          </div>
+
+        </div>
+      </md-toolbar>
+      <!-- END - Right Side Of Top Toolbar -->
+
+      <!-- START Current View -->
+      <ui-view></ui-view>
+      <!-- END Current View -->
+
+    </md-content>
+
+    <div class="search-container" ng-controller="SearchController">
+      
+    </div>
+    
+    <!-- App -->
+    <script src="js/app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js"></script>
+  </body>
+</html>

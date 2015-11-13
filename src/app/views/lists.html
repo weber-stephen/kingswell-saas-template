@@ -1,0 +1,159 @@
+<div class="lists-view">
+    
+  <section class="documentation-block" layout layout-margin layout-padding layout-align="center center" class="margin-top-20">
+      <div flex="60">
+          <p class="text-center">
+          Here is a list example showing messages coming from a remote source.
+          <br><br>
+          <a href="https://material.angularjs.org/latest/demo/list">Lists Documentation</a><br>
+          <a href="https://material.angularjs.org/latest/api/directive/mdList">MD-List API Documentation</a>
+          </p>
+      </div>
+  </section>
+
+  <section layout layout-align="center center" class="margin-top-20">
+    <div id="example1" flex class="md-whiteframe-1dp">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <md-icon md-font-library="material-icons">message</md-icon>
+          <h2>
+            <span>Messages</span>
+          </h2>
+          
+          <span flex></span>
+
+          <md-menu>
+            <md-button aria-label="Messages Menu" class="md-icon-button" ng-click="openMessageMenu($mdOpenMenu, $event)">
+              <md-icon md-menu-origin md-font-library="material-icons">more_vert</md-icon>
+            </md-button>
+            <md-menu-content width="3">
+              <md-menu-item>
+                <md-button>
+                  <md-icon md-font-library="material-icons">markunread</md-icon>
+                  Mark As Read
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button>
+                  <md-icon md-font-library="material-icons">refresh</md-icon>
+                  Refresh
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+
+        </div>
+      </md-toolbar>
+
+      <md-content>
+        <md-list layout-margin layout-padding>
+          <md-subheader class="md-no-sticky">6 Unread Messages</md-subheader>
+          <md-list-item class="md-3-line" ng-repeat="item in messages">
+            <img ng-src="img/profiles/{{item.profile}}.jpg" class="md-avatar" alt="{{item.from_name}}" />
+            <div class="md-list-item-text" layout="column">
+              <h3>{{ item.from_name }}</h3>
+              <h4>{{ item.timestamp }}</h4>
+              <p>{{ item.message }}</p>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </div>
+  </section>
+
+  <section layout="row" layout-align="center center" layout-padding class="margin-bottom-50">
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="HTML">
+        <div class="code-container" flex>
+          <div hljs include="'exampleCode1HTML'">
+          </div>
+          <md-button class="copy-btn" clipboard text="getExample('exampleCode1HTML')">Copy</md-button>
+        </div>
+      </md-tab>
+      <md-tab label="JS">
+        <div class="code-container" flex>
+          <div hljs include="'exampleCode1JS'">
+          </div>
+          <md-button class="copy-btn" clipboard text="getExample('exampleCode1JS')">Copy</md-button>
+        </div>
+      </md-tab>
+    </md-tabs>
+  </section>
+
+<script type="text/ng-template" id="exampleCode1HTML">
+<section layout layout-align="center center" class="margin-top-20">
+  <div id="example1" flex class="md-whiteframe-1dp">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <md-icon md-font-library="material-icons">message</md-icon>
+        <h2>
+          <span>Messages</span>
+        </h2>
+        
+        <span flex></span>
+
+        <md-menu>
+          <md-button aria-label="Messages Menu" class="md-icon-button" ng-click="openMessageMenu($mdOpenMenu, $event)">
+            <md-icon md-menu-origin md-font-library="material-icons">more_vert</md-icon>
+          </md-button>
+          <md-menu-content width="3">
+            <md-menu-item>
+              <md-button>
+                <md-icon md-font-library="material-icons">markunread</md-icon>
+                Mark As Read
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button>
+                <md-icon md-font-library="material-icons">refresh</md-icon>
+                Refresh
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+
+      </div>
+    </md-toolbar>
+
+    <md-content>
+      <md-list layout-margin layout-padding>
+        <md-subheader class="md-no-sticky">6 Unread Messages</md-subheader>
+        <md-list-item class="md-3-line" ng-repeat="item in messages">
+          <img ng-src="img/profiles/{{item.profile}}.jpg" class="md-avatar" alt="{{item.from_name}}" />
+          <div class="md-list-item-text" layout="column">
+            <h3>{{ item.from_name }}</h3>
+            <h4>{{ item.timestamp }}</h4>
+            <p>{{ item.message }}</p>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </div>
+</section>
+</script>
+<script type="text/ng-template" id="exampleCode1JS">
+$scope.messages = [];
+
+var originatorEv;
+
+$scope.openMessageMenu = function($mdOpenMenu, ev) {
+  console.log('openMessageMenu');
+  originatorEv = ev;
+  $mdOpenMenu(ev);
+};
+
+$scope.getMessages = function() {
+  MessageFactory.get()
+  .then(function(data) {
+    $scope.messages = data;
+  });
+}
+
+$scope.getExample = function(_example) {
+  return $templateCache.get(_example);
+};
+
+$scope.getMessages();
+</script>
+
+</div>

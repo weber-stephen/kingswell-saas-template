@@ -1,0 +1,137 @@
+.dashboard-view {
+
+	.dashboard-item {
+		md-list {
+			// max-height: 250px;
+			overflow-y: scroll;
+			margin: 0;
+		}
+	}
+
+	.task-item {
+
+		.task-text {
+    	min-width: 150px;
+			width: 150px;
+			font-weight: 600;
+			white-space: nowrap;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		}
+
+		.due-date-display {
+			text-align: right;
+			width: 100%;
+		}
+
+		.due-today {
+			color: red;
+		}
+
+	}
+
+	.meeting-item {
+		height:273px;
+
+		md-list-item.md-3-line, md-list-item.md-3-line>.md-no-style {
+			margin-bottom: 20px;
+		}
+
+		.unread {
+			.md-list-item-text {
+				h3, .timestamp, .message-preview {
+					font-weight: 600;
+				}
+			}
+		}
+
+	}
+
+	.goals-item {
+		height: auto;
+    max-height: none;
+
+    .goal-container {
+
+    	&.second-row {
+    		margin-top: 50px;
+    		margin-bottom: 23px;
+    	}
+
+			.goal-item {
+				position: relative;
+
+				.goal-display {
+					position: absolute;
+					top: 16px;
+					width: 100%;
+					text-align: center;
+				}
+				canvas {
+			    display: block;
+			    margin-left: auto;
+			    margin-right: auto;
+				}
+				.goal-label {
+					width: 100%;
+					text-align: center;
+					color: rgba(0,0,0,.35);
+					margin-top: 10px;
+				}
+			}
+			.sales-goal {
+				.goal-display {
+					top: 40px;
+				}
+			}
+		}
+	}
+
+	.server-item {
+		height: auto;
+    max-height: none;
+
+    md-content {
+    	overflow-y: hidden;
+    }
+
+    .stat-container {
+    	margin-top: 30px;
+
+			.stat-item {
+				position: relative;
+
+				.stat-display {
+					position: absolute;
+					top: 16px;
+					width: 100%;
+					text-align: center;
+				}
+				canvas {
+			    display: block;
+			    margin-left: auto;
+			    margin-right: auto;
+				}
+				.stat-label {
+					width: 100%;
+					text-align: center;
+					color: rgba(0,0,0,.35);
+					margin-top: 10px;
+				}
+			}
+		}
+	}
+
+	md-card.chart-item {
+		height: 200px;
+		max-height: none;
+	}
+
+	.chart-item.sales-per-day-item {
+		background-color: #9CE1EC;
+	}
+	.chart-item.customers-per-day-item {
+		background-color: #EC9CE2;
+	}
+
+}

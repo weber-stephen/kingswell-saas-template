@@ -1,0 +1,17 @@
+.rickshaw-view {
+
+  md-card {
+    max-height: inherit;
+  }
+
+  md-tabs {
+    min-width: 600px;
+
+    md-tab-content {
+      min-width: 100%;
+
+    }
+
+  }
+  
+}

@@ -1,0 +1,27 @@
+md-sidenav {
+  -webkit-transition: transform 400ms ease;
+  -moz-transition: transform 400ms ease;
+  -o-transition: transform 400ms ease;
+  transition: transform 400ms ease;
+  
+  .ng-enter {
+    -webkit-animation: fadeInUp 1s;
+    -moz-animation: fadeInUp 1s;
+    -ms-animation: fadeInUp 1s;
+    animation: fadeInUp 1s;
+  }
+
+  .ng-leave {
+    -webkit-animation: fadeInDown 1s;
+    -moz-animation: fadeInDown 1s;
+    -ms-animation: fadeInDown 1s;
+    animation: fadeInDown 1s;
+  }
+
+  .transition-half {
+  	-webkit-transition: all 0.5s ease-in-out;
+  	-moz-transition: all 0.5s ease-in-out;
+  	-o-transition: all 0.5s ease-in-out;
+  	transition: all 0.5s ease-in-out;
+  }
+}

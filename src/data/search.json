@@ -1,0 +1,18 @@
+[
+  {
+    "id": "dashboard",
+    "label": "Dashboard"
+  },
+  {
+    "id": "buttons",
+    "label": "Buttons"
+  },
+  {
+    "id": "cards",
+    "label": "Cards"
+  },
+  {
+    "id": "icons",
+    "label": "Icons"
+  }
+]

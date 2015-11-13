@@ -1,0 +1,23 @@
+md-list-item {
+  margin-left: 0;
+  opacity: 1;
+  -webkit-transition: all 0.25s cubic-bezier(0.000, 0.000, 0.580, 1.000); 
+  -moz-transition: all 0.25s cubic-bezier(0.000, 0.000, 0.580, 1.000); 
+  -o-transition: all 0.25s cubic-bezier(0.000, 0.000, 0.580, 1.000); 
+  transition: all 0.25s cubic-bezier(0.000, 0.000, 0.580, 1.000); 
+}
+
+md-list-item.ng-enter {
+  opacity: 0;
+  margin-left: 600px;
+}
+
+md-list-item.ng-leave {
+  opacity: 1;
+  margin-left: 0px;
+}
+
+md-list-item.ng-leave.ng-leave-active {
+  opacity: 0;
+  margin-left: 600px;
+}

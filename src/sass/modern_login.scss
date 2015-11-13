@@ -1,0 +1,142 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  font-weight: 300;
+  width: 100%;
+  height: 100%;
+
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#50a3a2+0,53e3a6+100 */
+  background: rgb(80,163,162); /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzUwYTNhMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1M2UzYTYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(left,  rgba(80,163,162,1) 0%, rgba(83,227,166,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(80,163,162,1)), color-stop(100%,rgba(83,227,166,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  rgba(80,163,162,1) 0%,rgba(83,227,166,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  rgba(80,163,162,1) 0%,rgba(83,227,166,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  rgba(80,163,162,1) 0%,rgba(83,227,166,1) 100%); /* IE10+ */
+  background: linear-gradient(to right,  rgba(80,163,162,1) 0%,rgba(83,227,166,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#50a3a2', endColorstr='#53e3a6',GradientType=1 ); /* IE6-8 */
+}
+
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 450px;
+  margin-top: -200px;
+  overflow: hidden;
+
+  .logo {
+    color: rgba(255,255,255,0.5);
+  }
+
+  .container {
+    max-width: 330px;
+    margin: 0 auto;
+    height: 100%;
+    text-align: center;
+
+    form {
+      background-color: rgba(255,255,255,0.1);
+
+      input,label {
+        color: #fff !important;
+      }
+
+      .mdl-textfield__input {
+        border-bottom: 1px solid rgba(255,255,255,1);
+      }
+
+      .mdl-textfield {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+    #login-button {
+      color: #000;
+      background-color: rgba(255,255,255,1);
+      margin-bottom: 20px;
+      margin-top: 10px;
+      width: 300px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    #forgot-password-button {
+      color: #fff;
+    }
+
+  }
+
+}
+
+@media only screen and (max-width : 1200px) {
+
+}
+
+@media only screen and (max-width : 979px) {
+
+}
+
+@media only screen and (max-width : 767px) {
+
+}
+
+@media only screen and (max-width : 480px) {
+
+  .wrapper {
+    position: relative;
+    margin-top: 0px;
+    top: 0px;
+    height: 100%;
+
+    .container {
+      max-width: none;
+      width: 100%;
+      margin: 0;
+
+      form {
+        background-color: rgba(255,255,255,0);
+        width: 100%;
+        height: 100%;
+
+        .form-content {
+          padding-top: 50px;
+
+          #login-button {
+            height:100px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+@media only screen and (max-width : 320px) {
+
+  .wrapper {
+    margin-top: 0px;
+    top: 0px;
+
+    .container {
+      width: 100%;
+      max-width: none;
+
+      form {
+        width: 100%;
+      }
+
+    }
+
+  }
+
+}

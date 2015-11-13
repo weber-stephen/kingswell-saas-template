@@ -1,0 +1,44 @@
+.user-sidebar {
+
+  md-tab-item {
+    max-width: 100% !important;
+  }
+
+  md-tabs-canvas, md-pagination-wrapper {
+      height: 64px;
+  }
+
+  md-list-item {
+    .md-button {
+      max-height: none;
+    }
+  }
+
+  md-list-item.ng-enter {
+    margin-left: 300px;
+  }
+
+  md-list-item.ng-leave.ng-leave-active {
+    margin-left: 300px;
+  }
+
+  .truncate {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  md-list md-list-item.md-3-line .md-list-item-text h4.timestamp {
+    color: #9C9C9C;
+  }
+
+  .message-preview {
+    font-size: 16px;
+  }
+
+  .md-avatar {
+    margin-top: 24px;
+  }
+
+}

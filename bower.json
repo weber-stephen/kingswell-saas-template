@@ -1,0 +1,42 @@
+{
+  "name": "Admin Template",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular-touch": "~1.4.7",
+    "angular-sanitize": "~1.4.7",
+    "angular-messages": "~1.4.7",
+    "angular-animate": "~1.4.7",
+    "angular-aria": "~1.4.7",
+    "ui-router-extras": "~0.0.14",
+    "angular-translate": "~2.8.1",
+    "angular-google-maps": "~2.2.1",
+    "material-design-icons": "~2.0.0",
+    "angular-smart-table": "~2.1.3",
+    "angular-rickshaw": "~0.10.0",
+    "jquery.easy-pie-chart": "~2.1.6",
+    "moment": "~2.10.6",
+    "highlightjs": "~8.8.0",
+    "angular-highlightjs": "~0.4.3",
+    "angular-clipboard": "~1.1.1",
+    "angular-ui-router": "~0.2.15",
+    "angular-material": "0.11.2",
+    "angular-fontawesome": "~1.0.0",
+    "mdi": "~1.2.65",
+    "angular-material-data-table": "~0.8.14",
+    "angular-translate-storage-cookie": "~2.8.1",
+    "angular-translate-loader-url": "~2.8.1",
+    "angular-cookies": "~1.4.7",
+    "c3-angular": "~0.7.1",
+    "ng-chartjs": "~0.0.5",
+    "socket.io-client": "~1.3.7",
+    "vide": "~0.4.1",
+    "material-design-lite": "~1.0.6"
+  },
+  "resolutions": {
+    "angular": "1.4.7",
+    "angular-animate": "~1.4.7",
+    "angular-translate": "~2.7.2",
+    "d3": "<=3.5.0"
+  }
+}

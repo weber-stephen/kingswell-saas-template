@@ -1,0 +1,38 @@
+<div class="notification-view">
+  <md-content layout-padding layout-margin>
+    <section class="documentation-block" layout layout-margin layout-padding layout-align="center center" class="margin-top-20">
+      <div flex="60">
+        <p class="text-center">
+          Material uses a library called Toast to do messsages.<br>
+          Messages can be dismissed with a swipe, a timer, or a button.
+          <br><br>
+          <a href="https://material.angularjs.org/latest/demo/toast">Documentation</a><br>
+        </p>
+      </div>
+    </section>
+    <div layout="row" layout-sm="column" layout-align="space-around">
+      <div style="width:50px"></div>
+      <md-button ng-click="showSimpleToast()">
+        Show Simple
+      </md-button>
+      <md-button class="md-raised" ng-click="showActionToast()">
+        Show With Action
+      </md-button>
+      <md-button ng-click="showCustomToast()">
+        Show Custom
+      </md-button>
+      <div style="width:50px"></div>
+    </div>
+    <div layout="row" id="toastBounds">
+      <div>
+        <br/>
+        <b>Toast Position: "{{getToastPosition()}}"</b>
+        <br/>
+        <md-checkbox ng-repeat="(name, isSelected) in toastPosition"
+          ng-model="toastPosition[name]">
+          {{name}}
+        </md-checkbox>
+      </div>
+    </div>
+  </md-content>
+</div>

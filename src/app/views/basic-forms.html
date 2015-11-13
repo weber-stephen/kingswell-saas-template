@@ -1,0 +1,155 @@
+<div class="basic-forms-view">
+  <md-content>
+    <section layout="row" layout-padding layout-align="center center">
+      <div class="example1" flex>
+        <div class="md-title">User Profile</div>
+        <form name="userForm">
+          <div layout layout-sm="column">
+            <md-input-container flex>
+              <label>First name</label>
+              <input ng-model="user.firstName">
+            </md-input-container>
+            <md-input-container flex>
+              <label>Last Name</label>
+              <input ng-model="theMax">
+            </md-input-container>
+          </div>
+          <div layout layout-sm="column">
+            <md-input-container style="width:70%">
+              <label>Company (Disabled)</label>
+              <input ng-model="user.company" disabled>
+            </md-input-container>
+            <md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date"></md-datepicker>
+          </div>
+          <md-input-container flex>
+            <label>Address</label>
+            <input ng-model="user.address">
+          </md-input-container>
+          <md-input-container md-no-float>
+            <input ng-model="user.address2" placeholder="Address 2">
+          </md-input-container>
+          <div layout layout-sm="column">
+            <md-input-container flex>
+              <label>City</label>
+              <input ng-model="user.city">
+            </md-input-container>
+            <md-input-container flex>
+              <label>State</label>
+              <md-select ng-model="user.state">
+                <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                  {{state.abbrev}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container flex>
+              <label>Postal Code</label>
+              <input name="postalCode" ng-model="user.postalCode" placeholder="12345"
+                     required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+              <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+                <div ng-message="required" class="my-message">You must supply a postal code.</div>
+                <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
+                  code.
+                </div>
+                <div ng-message="md-maxlength" class="my-message">
+                  Don't use the long version silly...we don't need to be that specific...
+                </div>
+              </div>
+            </md-input-container>
+          </div>
+          <md-input-container flex>
+            <label>Biography</label>
+            <textarea ng-model="user.biography" columns="1" md-maxlength="150"></textarea>
+          </md-input-container>
+          <md-input-container flex>
+            <md-switch ng-model="user.gender" class="md-primary" aria-label="Gender" ng-true-value="'Male'" ng-false-value="'Female'">
+              Gender: {{ user.gender }}
+            </md-switch>
+          </md-input-container>
+          <md-button class="md-raised">Cancel</md-button>
+          <md-button class="md-raised md-primary">Send</md-button>
+        </form>
+      </div>
+    </section>
+
+    <section layout="row" layout-padding layout-align="center center">
+        <div class="code-container" flex>
+          <div hljs include="'exampleCode1'">
+          </div>
+          <md-button class="copy-btn" clipboard text="getExample('exampleCode1')">Copy</md-button>
+        </div>
+    </section>
+
+  </div>
+</md-content>
+
+<script type="text/ng-template" id="exampleCode1">
+<div class="example1" flex>
+  <div class="md-title">User Profile</div>
+  <form name="userForm">
+    <div layout layout-sm="column">
+      <md-input-container flex>
+        <label>First name</label>
+        <input ng-model="user.firstName">
+      </md-input-container>
+      <md-input-container flex>
+        <label>Last Name</label>
+        <input ng-model="theMax">
+      </md-input-container>
+    </div>
+    <div layout layout-sm="column">
+      <md-input-container style="width:70%">
+        <label>Company (Disabled)</label>
+        <input ng-model="user.company" disabled>
+      </md-input-container>
+      <md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date"></md-datepicker>
+    </div>
+    <md-input-container flex>
+      <label>Address</label>
+      <input ng-model="user.address">
+    </md-input-container>
+    <md-input-container md-no-float>
+      <input ng-model="user.address2" placeholder="Address 2">
+    </md-input-container>
+    <div layout layout-sm="column">
+      <md-input-container flex>
+        <label>City</label>
+        <input ng-model="user.city">
+      </md-input-container>
+      <md-input-container flex>
+        <label>State</label>
+        <md-select ng-model="user.state">
+          <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+            {{state.abbrev}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+      <md-input-container flex>
+        <label>Postal Code</label>
+        <input name="postalCode" ng-model="user.postalCode" placeholder="12345"
+               required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+        <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+          <div ng-message="required" class="my-message">You must supply a postal code.</div>
+          <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
+            code.
+          </div>
+          <div ng-message="md-maxlength" class="my-message">
+            Don't use the long version silly...we don't need to be that specific...
+          </div>
+        </div>
+      </md-input-container>
+    </div>
+    <md-input-container flex>
+      <label>Biography</label>
+      <textarea ng-model="user.biography" columns="1" md-maxlength="150"></textarea>
+    </md-input-container>
+    <md-input-container flex>
+      <md-switch ng-model="user.gender" class="md-primary" aria-label="Gender" ng-true-value="'Male'" ng-false-value="'Female'">
+        Gender: {{ user.gender }}
+      </md-switch>
+    </md-input-container>
+    <md-button class="md-raised">Cancel</md-button>
+    <md-button class="md-raised md-primary">Send</md-button>
+  </form>
+</div>
+</script>
+</div>

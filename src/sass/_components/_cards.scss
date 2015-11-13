@@ -1,0 +1,181 @@
+md-card {
+  position: relative;
+  max-width: 800px;
+
+  &.color-card {
+    .md-title {
+      color: #fff;
+    }
+  }
+
+  &.chart-card {
+    max-height: 200px;
+
+    .md-title {
+      margin-top: 0;   
+    }
+
+    md-card-content {
+      max-height: 100%;
+    }
+
+    .chart-container {
+        position: relative;
+        bottom: -15px;
+        left: -5px;
+        width: 100%;
+        height: 100px;
+
+        #line-chart {
+            width: 100%;
+            height: 100px;
+        }
+
+        canvas {
+            width: 110% !important;
+            height: 100px !important;
+        }
+
+    }
+
+  }
+
+  /* Square Image Card */
+  &.square {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-width: 256px;
+    min-height: 256px;
+    max-width: 800px;
+    max-height: 800px;
+    height: 50%;
+
+    .md-card-header {
+      width: 100%;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+    }
+
+  }
+
+  /* Hero Image With Text Overlay */
+  &.hero-overlay {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: none;
+    max-height: 250px;
+
+    .hero-img {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background: center / cover;
+    }
+
+    .relative-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      .md-card-header {
+        width: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        background: rgba(0,0,0,.45);
+
+        .card-content-container {
+          padding: 20px;
+
+          .welcome-display {
+            bottom: initial;
+            position: relative;
+            padding-left: 0px;
+            margin: 0px;
+            margin-bottom: 10px;
+          }
+
+          .date-display {
+            margin: 0px;
+            margin-bottom: 15px;
+          }
+
+          .summary-display {
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .md-card-header {
+    min-height: 100px;
+    position: relative;
+    background-repeat: no-repeat;
+    background: center / cover;
+
+    .gradient {
+      width: 100%;
+      height: 100%;
+      background: -moz-linear-gradient(top,  rgba(0,0,0,0) 57%, rgba(0,0,0,0.02) 58%, rgba(0,0,0,0.65) 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(57%,rgba(0,0,0,0)), color-stop(58%,rgba(0,0,0,0.02)), color-stop(100%,rgba(0,0,0,0.65)));
+      background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 57%,rgba(0,0,0,0.02) 58%,rgba(0,0,0,0.65) 100%);
+      background: -o-linear-gradient(top,  rgba(0,0,0,0) 57%,rgba(0,0,0,0.02) 58%,rgba(0,0,0,0.65) 100%);
+      background: -ms-linear-gradient(top,  rgba(0,0,0,0) 57%,rgba(0,0,0,0.02) 58%,rgba(0,0,0,0.65) 100%);
+      background: linear-gradient(to bottom,  rgba(0,0,0,0) 57%,rgba(0,0,0,0.02) 58%,rgba(0,0,0,0.65) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+    }
+
+    .md-title {
+      color: #fff;
+      position: absolute;
+      bottom: 0px;
+      padding-left: 15px;
+    }
+
+  }
+
+  .md-actions {
+    &.border-top {
+      border-top: 1px solid rgba(0,0,0,.1);
+    }
+    &.top {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      
+      .md-button {
+        background: transparent;
+        min-width: 48px;
+
+        &.md-focued {
+          background: transparent;
+        }
+
+        md-icon {
+          color: #fff;
+        }
+
+      }
+
+    }
+  }
+
+}

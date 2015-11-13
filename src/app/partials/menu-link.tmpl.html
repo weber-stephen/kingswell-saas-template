@@ -1,0 +1,24 @@
+<md-button
+    ng-if="section.url"
+    ng-class="{'active' : isSelected()}"
+    ui-sref="{{section.url}}"
+    ng-click="focusSection()">
+  {{section | humanizeDoc}}
+  <span class="md-visually-hidden"
+    ng-if="isSelected()">
+    current page
+  </span>
+</md-button>
+<md-button
+    ng-if="section.absolute_url"
+    ng-class="{'active' : isSelected()}"
+    href="/{{section.absolute_url}}"
+    ng-click="focusSection()">
+  {{section | humanizeDoc}}
+  <span class="md-visually-hidden"
+    ng-if="isSelected()">
+    current page
+  </span>
+</md-button>
+
+   

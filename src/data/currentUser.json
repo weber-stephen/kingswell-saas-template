@@ -1,0 +1,12 @@
+{
+  "first_name": "Jack",
+  "last_name": "Sparrow",
+  "title": "UI Engineer",
+  "profile":"profile-gradient.jpg",
+  "background":"profile-background-blur-gradient.jpg",
+  "email":"me@stephenweber.io",
+  "address_1":"123 Sierra St.",
+  "address_2":"Apt. K",
+  "city":"Laguna Beach",
+  "state":"CA"
+}

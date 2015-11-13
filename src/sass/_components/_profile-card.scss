@@ -1,0 +1,87 @@
+$profile-card-width: 400px;
+$profile-card-height: 350px;
+$profile-blur-amount: 5px;
+
+.profile-card {
+  width: $profile-card-width;
+  height: $profile-card-height;
+  font-family: 'Lato', sans-serif;
+  position: relative;
+  
+  .blur-container {
+    overflow:hidden;
+    width: $profile-card-width;
+    height: $profile-card-height - 100;
+    position: relative;
+
+    .blur-img {
+      /* If you want to do a dynamic blur */
+      // -webkit-filter: blur($profile-blur-amount);
+      // -moz-filter: blur($profile-blur-amount);
+      // -o-filter: blur($profile-blur-amount);
+      // -ms-filter: blur($profile-blur-amount);
+      // filter: blur($profile-blur-amount);
+    }
+  }
+  
+  .profile-img {
+    position:absolute;
+    top: 35px;
+    left: (400px/2)-(200px/2);
+    
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      box-shadow: 0 7px 8px -4px rgba(0,0,0,.2),0 12px 17px 2px rgba(0,0,0,.14),0 5px 22px 4px rgba(0,0,0,.12);
+    }
+    
+  }
+  
+  .profile-link {
+    position:absolute;
+    top: (200px+40px) + 20;
+    left: 0;
+    width: 100%;
+    text-align:center;
+    text-decoration: none;
+  }
+  
+  .profile-link:hover {
+    text-decoration: underline;
+  }
+  
+  .name-link {
+    color: #fff;
+    font-size:1.5em;
+  }
+
+  .title-link {
+    top: (200px+40px) + 60;
+    color: rgba(255, 255, 255, 0.5);
+    font-size:1em;
+  }
+  
+  .notification-content {
+    .notification-item {
+      width: ($profile-card-width/3);
+      height: 40px;
+      float: left;
+      padding-top: 20px;
+      
+      a {
+        width: 100%;
+        text-align: center;
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.24);
+        padding-left: 15px;
+        
+        &.tasks {
+          padding-left: 30px;
+        }
+        
+      }
+    }
+  }
+  
+}
