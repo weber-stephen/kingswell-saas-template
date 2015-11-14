@@ -116,4 +116,4 @@ Stephen Weber <me@stephenweber.io>
 
 ## License
 
-Undetermined.
+MIT! Have fun with it!
