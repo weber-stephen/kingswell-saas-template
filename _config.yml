@@ -1,0 +1,21 @@
+# Site settings
+title: Kingswell
+subtitle: SaaS &amp; Admin Template
+email: me@stephenweber.io
+description: > # this means to ignore newlines until "baseurl:"
+  Stop paying for an admin template when you can get more with this awesome little gem. Using AngularJS best practices, tons of examples, Gulp runs a Restify server and a Socket.IO server for realtime data streaming into your new front-end UI.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://yourdomain.com" # the base hostname & protocol for your site
+twitter_username: stephenweber
+github_username:  weber-stephen
+
+# Layout settings
+header_type: default  # values [ drawer, default ]
+post_type: highlight    # values [ highlight, default ]
+pagination_type: default  # values [ ops, default ]
+
+disqus: true
+disqus_shortname: 'gdgmanagua'
+
+# Build settings
+markdown: kramdown
