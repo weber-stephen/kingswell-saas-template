@@ -4,10 +4,10 @@
     <title>Kingswell</title>
     <description>Stop paying for an admin template when you can get more with this awesome little gem. Using AngularJS best practices, tons of examples, Gulp runs a Restify server and a Socket.IO server for realtime data streaming into your new front-end UI.
 </description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 16 Nov 2015 08:14:24 -0800</pubDate>
-    <lastBuildDate>Mon, 16 Nov 2015 08:14:24 -0800</lastBuildDate>
+    <link>http://yourdomain.comhttp://weber-stephen.github.io/kingswell-saas-template//</link>
+    <atom:link href="http://yourdomain.comhttp://weber-stephen.github.io/kingswell-saas-template//feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 16 Nov 2015 08:17:50 -0800</pubDate>
+    <lastBuildDate>Mon, 16 Nov 2015 08:17:50 -0800</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
     
   </channel>
