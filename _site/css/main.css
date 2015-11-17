@@ -97,15 +97,15 @@ header.mdl-layout__header {
   display: flex; }
   header.mdl-layout__header .mdl-layout__drawer-button {
     background-color: transparent; }
+  header.mdl-layout__header .header-row .title-container {
+    text-align: right; }
   header.mdl-layout__header .header-row .logo {
     max-width: 70px;
     margin: 20px; }
-  header.mdl-layout__header .header-row .subtitle {
-    width: 400px; }
   header.mdl-layout__header .header-row .header-links {
     margin-top: 40px; }
     header.mdl-layout__header .header-row .header-links a {
-      float: left; }
+      float: right; }
     header.mdl-layout__header .header-row .header-links .btn {
       text-decoration: none;
       display: inline-block;

@@ -14,6 +14,10 @@ header.mdl-layout__header {
     // height: 100%;
     // position: relative;
 
+    .title-container {
+      text-align: right;
+    }
+
     .logo {
       max-width: 70px;
       margin: 20px;
@@ -23,14 +27,14 @@ header.mdl-layout__header {
     }
 
     .subtitle {
-      width: 400px;
+      // width: 400px;
     }
 
     .header-links {
       margin-top: 40px;
 
       a {
-        float: left;
+        float: right;
       }
 
       .btn {
