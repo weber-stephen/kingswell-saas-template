@@ -10,9 +10,9 @@ header.mdl-layout__header {
     background-color: transparent;
   }
 
-  .mdl-layout__header-row {
-    height: 100%;
-    position: relative;
+  .header-row {
+    // height: 100%;
+    // position: relative;
 
     .logo {
       max-width: 70px;
@@ -74,7 +74,7 @@ header.mdl-layout__header {
 
 @media screen and (max-width: 850px) {
 
-  header.mdl-layout__header .mdl-layout__header-row {
+  header.mdl-layout__header .header-row {
     padding: 0;
 
     .subtitle {
@@ -100,10 +100,10 @@ header.mdl-layout__header {
 
   header.mdl-layout__header {
 
-    .mdl-layout__header-row {
-      align-items: flex-start;
-      margin-top: 40px;
-      padding: 0;
+    .header-row {
+      // align-items: flex-start;
+      // margin-top: 40px;
+      // padding: 0;
 
       .mdl-grid {
         padding: 0;
@@ -148,7 +148,7 @@ header.mdl-layout__header {
 
 @media only screen and (max-width : 480px) {
 
-  header.mdl-layout__header .mdl-layout__header-row .header-links {
+  header.mdl-layout__header .header-row .header-links {
     margin-bottom: 0;
     margin-top: 0;
   }
