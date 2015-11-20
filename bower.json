@@ -35,7 +35,8 @@
     "nvd3": "~1.8.1",
     "angular-nvd3": "~1.0.3",
     "angular-socket-io": "~0.7.0",
-    "angular-count-to": "*"
+    "angular-count-to": "*",
+    "oclazyload": "~1.0.8"
   },
   "resolutions": {
     "angular": "1.4.7",

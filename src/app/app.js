@@ -2,24 +2,26 @@ angular.module( 'app', [
   'ui.router',
   'ngTouch',
   'ngSanitize',
-  'uiGmapgoogle-maps',
   'ngAria',
   'ngMaterial',
   'ngAnimate',
   'ngCookies',
   'ngMessages',
-  'smart-table',
-  'angular-rickshaw',
-  'easypiechart',
-  'hljs',
-  'angular-clipboard',
-  'picardy.fontawesome',
-  'md.data.table',
-  'gridshore.c3js.chart',
-  'nvd3',
-  'chartjs',
+  'oc.lazyLoad',
   'btford.socket-io',
-  'countTo'
+  // Enable These If You Are Compiling All Plugins, Modules, Etc. Together
+  'uiGmapgoogle-maps',
+  // 'smart-table',
+  // 'angular-rickshaw',
+  // 'easypiechart',
+  // 'hljs',
+  // 'angular-clipboard',
+  // 'picardy.fontawesome',
+  // 'md.data.table',
+  // 'gridshore.c3js.chart',
+  // 'nvd3',
+  // 'chartjs',
+  // 'countTo'
 ])
 .config(function(uiGmapGoogleMapApiProvider) {
     

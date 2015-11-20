@@ -1,5 +1,9 @@
 angular.module('app')
 .controller('DashboardController', function($scope,$log,socketServer,EVENTS) {
+    
+    $scope.$on('$viewContentLoaded', function() {   
+        
+    });
 
     $scope.dashboardData = {
         welcome_widget: {
@@ -188,10 +192,9 @@ angular.module('app')
         size:50
     };
 
-    var ctx = document.getElementById("serverChart").getContext("2d");
+    var _canvas = $('<canvas/>', { id: 'mycanvas', height: 500, widtH: 200});
+    var ctx = _canvas[0].getContext("2d");
     $scope.gradient = ctx.createLinearGradient(0, 0, 0, 120);
-    // $scope.gradient.addColorStop(0, 'rgba(6, 255, 0, 1)');
-    // $scope.gradient.addColorStop(.8, 'rgba(0, 182, 189, 1)');
     $scope.gradient.addColorStop(0, 'rgba(72,16,137, 1)');
     $scope.gradient.addColorStop(.8, 'rgba(23, 153, 207, 1)');
 

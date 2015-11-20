@@ -13,11 +13,11 @@ var gulp        = require('gulp'),
     io          = require('socket.io')(http);
 
 var paths = {
-  src:'src',
-  build:'build',
-  bower_components:'bower_components',
-  vendor:'vendor',
-  tpl:'tpl',
+  src : 'src',
+  build : 'build',
+  bower_components : 'bower_components',
+  vendor : 'vendor',
+  tpl : 'tpl',
 };
 
 var componentPaths = {
@@ -28,6 +28,9 @@ var componentPaths = {
   angularAria : paths.bower_components+'/angular-aria/angular-aria.min.js',
   angularMaterial : paths.bower_components+'/angular-material/angular-material.js',
   angularMaterialCSS : paths.bower_components+'/angular-material/angular-material.css',
+
+  //OC Lazy Load
+  oclazyload : paths.bower_components+'/oclazyload/dist/ocLazyLoad.min.js',
 
   //Almost every plugin still needs this
   jquery : paths.bower_components+'/jquery/dist/jquery.js',
@@ -139,6 +142,10 @@ gulp.task('bower_css', function() {
     ])
     .pipe(concat('_bower_components.scss'))
     .pipe(gulp.dest('./'+paths.src+'/sass/'));
+});
+gulp.task('bower', ['bower_css'], function() {
+  return gulp.src('./bower_components/**/*')
+  .pipe(gulp.dest('./'+paths.build+'/bower_components'));
 });
 
 gulp.task('socketio_server',function() {
@@ -301,6 +308,11 @@ gulp.task('client_server', ['html','imagemin','svg','data','fonts','js','sass'],
   ], ['js']);
 
   gulp.watch([
+      './'+paths.src+'/app/controllers/*.js',
+      './'+paths.src+'/app/controllers/**/*.js',
+  ], ['jscontroller-copy']);
+
+  gulp.watch([
     paths.src+'/*.html',
     paths.src+'/app/tpl/*.html',
     paths.src+'/app/tpl/*.tpl',
@@ -367,10 +379,22 @@ gulp.task('fonts', function () {
 });
 
 /**
+ * $ gulp copy controllers to build
+ * description: 
+ */
+gulp.task('jscontroller-copy', function () {
+  return gulp.src([
+    './'+paths.src+'/app/controllers/*.js',
+    './'+paths.src+'/app/controllers/**/*.js',
+  ])
+  .pipe(gulp.dest('./'+paths.build+'/js/controllers'));
+});
+
+/**
  * $ gulp compile js
  * description: 
  */
-gulp.task('js', function () {
+gulp.task('js', ['bower_css'], function () {
 
   gulp.src([
     componentPaths.jquery,
@@ -417,37 +441,50 @@ gulp.task('js', function () {
     componentPaths.angularAnimate,
     componentPaths.angularAria,
     componentPaths.angularUIRouter,
+    componentPaths.oclazyload,
     componentPaths.lodash,
     componentPaths.angularSimpleLogger,
     componentPaths.angularGoogleMaps,
-    componentPaths.angularSmartTable,
     componentPaths.d3,
-    componentPaths.rickshaw,
-    componentPaths.angularRickshaw,
-    componentPaths.angularEasyPieChart,
-    componentPaths.c3,
-    componentPaths.angularC3,
-    componentPaths.nvd3,
-    componentPaths.angularNvd3,
-    componentPaths.chartJS,
-    componentPaths.angularChartJS,
-    componentPaths.moment,
-    componentPaths.highlightJS,
-    componentPaths.angularHighlightJS,
-    componentPaths.angularClipboard,
-    componentPaths.angularFontAwesome,
-    componentPaths.angularMaterialDatatables,
+
+    //Socket IO Functionality
     componentPaths.socketIO,
     componentPaths.angularSocketIO,
-    componentPaths.angularCountTo,
+
+    // Enable These If You Are Compiling All Plugins, Modules, Etc. Together
+    // These will increase the initial file load and therefore make your app take longer to load
+    // componentPaths.angularSmartTable,
+    // componentPaths.rickshaw,
+    // componentPaths.angularRickshaw,
+    // componentPaths.angularEasyPieChart,
+    // componentPaths.c3,
+    // componentPaths.angularC3,
+    // componentPaths.nvd3,
+    // componentPaths.angularNvd3,
+    // componentPaths.chartJS,
+    // componentPaths.angularChartJS,
+    // componentPaths.moment,
+    // componentPaths.highlightJS,
+    // componentPaths.angularHighlightJS,
+    // componentPaths.angularClipboard,
+    // componentPaths.angularFontAwesome,
+    // componentPaths.angularMaterialDatatables,
+    // componentPaths.angularCountTo,
+
     './'+paths.src+'/app/libs/*.js', //This is where I put libraries that down have bower files
     './'+paths.src+'/app/*.js',
     './'+paths.src+'/app/services/*.js',
     './'+paths.src+'/app/services/**/*.js',
     './'+paths.src+'/app/factories/*.js',
     './'+paths.src+'/app/factories/**/*.js',
-    './'+paths.src+'/app/controllers/*.js',
-    './'+paths.src+'/app/controllers/**/*.js',
+
+    //Needed for App
+    './'+paths.src+'/app/controllers/AppController.js',
+    './'+paths.src+'/app/controllers/UserSidebarController.js',
+    './'+paths.src+'/app/controllers/SearchController.js',
+
+    // './'+paths.src+'/app/controllers/*.js',
+    // './'+paths.src+'/app/controllers/**/*.js',
     './'+paths.src+'/app/directives/*.js',
     './'+paths.src+'/app/directives/**/*.js',
   ])

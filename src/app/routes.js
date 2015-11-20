@@ -12,6 +12,34 @@ angular.module('app')
       templateUrl: 'views/dashboard.html',
       data: {
         pageTitle:'Dashboard'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  // insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                  files: [
+                      //Moment for time display
+                      'bower_components/moment/min/moment.min.js',
+
+                      // Sales Chart - NVD3 Charts
+                      'bower_components/nvd3/build/nv.d3.js',
+                      'bower_components/nvd3/build/nv.d3.css',
+                      'bower_components/angular-nvd3/dist/angular-nvd3.js',
+
+                      // Server Chart - ChartJS
+                      'bower_components/ng-chartjs/dist/angular-chartjs.min.js',
+                      'bower_components/Chart.js/Chart.min.js',
+
+                      //Easy Pie Chart
+                      'bower_components/jquery.easy-pie-chart/dist/angular.easypiechart.min.js',
+                      'bower_components/jquery.easy-pie-chart/dist/easypiechart.min.js',
+                      'bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js',
+
+                      'js/controllers/DashboardController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('typography', {

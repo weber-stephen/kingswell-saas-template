@@ -137,19 +137,7 @@ angular.module('app')
       $state.go(item.id);
     }
   };
-  // *********************
-  // Internal methods
-  // *********************
-  // function buildToggler(navID) {
-  //   return function() {
-  //     $mdSidenav(navID)
-  //       .toggle()
-  //       .then(function () {
-  //         $log.debug("toggle " + navID + " is done");
-  //       });
-  //   };
-  // }
-
+  
   function closeMenu() {
     $timeout(function() { $mdSidenav('left').close(); });
   }
@@ -177,7 +165,6 @@ angular.module('app')
   }
 
   function focusMainContent($event) {
-    // prevent skip link from redirecting
     if ($event) { $event.preventDefault(); }
 
     $timeout(function(){
