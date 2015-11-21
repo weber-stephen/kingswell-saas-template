@@ -162,21 +162,16 @@ gulp.task('bower', ['bower_css'], function() {
 });
 
 /**
- * $ gulp compile and copy sass
+ * $ gulp compile sass for modern_login
  * description: 
  */
-gulp.task('sass', function () {
+gulp.task('sass:basic_login', function () {
   return gulp.src([
-    './'+paths.client_src+'/sass/main.scss',
     './'+paths.client_src+'/sass/basic_login.scss',
-    './'+paths.client_src+'/sass/basic_register.scss',
-    './'+paths.client_src+'/sass/modern_login.scss',
-    './'+paths.client_src+'/sass/modern_register.scss',
-    './'+paths.client_src+'/sass/**/*.scss'
   ])
   .pipe(sass({ style: 'expanded', errLogToConsole: true }))
   .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
-  .pipe(concat('main.css'))
+  .pipe(concat('basic_login.css'))
   .pipe(rename({suffix: '.min'}))
   .pipe(sourcemaps.init())
   .pipe(minifycss())
@@ -184,6 +179,88 @@ gulp.task('sass', function () {
   .pipe(gulp.dest('./'+paths.build+'/css'))
   .pipe(browserSync.stream());
 });
+
+/**
+ * $ gulp compile sass for modern_register
+ * description: 
+ */
+gulp.task('sass:basic_register', function () {
+  return gulp.src([
+    './'+paths.client_src+'/sass/basic_register.scss',
+  ])
+  .pipe(sass({ style: 'expanded', errLogToConsole: true }))
+  .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
+  .pipe(concat('basic_register.css'))
+  .pipe(rename({suffix: '.min'}))
+  .pipe(sourcemaps.init())
+  .pipe(minifycss())
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest('./'+paths.build+'/css'))
+  .pipe(browserSync.stream());
+});
+
+/**
+ * $ gulp compile sass for modern_login
+ * description: 
+ */
+gulp.task('sass:modern_login', function () {
+  return gulp.src([
+    './'+paths.client_src+'/sass/modern_login.scss',
+  ])
+  .pipe(sass({ style: 'expanded', errLogToConsole: true }))
+  .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
+  .pipe(concat('modern_login.css'))
+  .pipe(rename({suffix: '.min'}))
+  .pipe(sourcemaps.init())
+  .pipe(minifycss())
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest('./'+paths.build+'/css'))
+  .pipe(browserSync.stream());
+});
+
+/**
+ * $ gulp compile sass for modern_register
+ * description: 
+ */
+gulp.task('sass:modern_register', function () {
+  return gulp.src([
+    './'+paths.client_src+'/sass/modern_register.scss',
+  ])
+  .pipe(sass({ style: 'expanded', errLogToConsole: true }))
+  .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
+  .pipe(concat('modern_register.css'))
+  .pipe(rename({suffix: '.min'}))
+  .pipe(sourcemaps.init())
+  .pipe(minifycss())
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest('./'+paths.build+'/css'))
+  .pipe(browserSync.stream());
+});
+
+/**
+ * $ gulp compile sass for app
+ * description: 
+ */
+gulp.task('sass:app', function () {
+  return gulp.src([
+    './'+paths.client_src+'/sass/app.scss'
+  ])
+  .pipe(sass({ style: 'expanded', errLogToConsole: true }))
+  .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
+  .pipe(concat('app.css'))
+  .pipe(rename({suffix: '.min'}))
+  .pipe(sourcemaps.init())
+  .pipe(minifycss())
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest('./'+paths.build+'/css'))
+  .pipe(browserSync.stream());
+});
+
+/**
+ * $ gulp compile sass for all resources
+ * description: 
+ */
+gulp.task('sass',['sass:app','sass:basic_login','sass:basic_register','sass:modern_login','sass:modern_register']);
 
 /**
  * $ gulp copy html and templates
@@ -382,11 +459,25 @@ gulp.task('client_server', ['html','imagemin','svg','data','fonts','js','sass'],
   });
 
   gulp.watch([
-    './'+paths.client_src+'/sass/main.scss',
     './'+paths.client_src+'/sass/basic_login.scss',
+  ], ['sass:basic_login']);
+
+  gulp.watch([
+    './'+paths.client_src+'/sass/basic_register.scss',
+  ], ['sass:basic_register']);
+
+  gulp.watch([
     './'+paths.client_src+'/sass/modern_login.scss',
+  ], ['sass:modern_login']);
+
+  gulp.watch([
+    './'+paths.client_src+'/sass/modern_register.scss',
+  ], ['sass:modern_register']);
+
+  gulp.watch([
+    './'+paths.client_src+'/sass/app.scss',
     './'+paths.client_src+'/sass/**/*.scss'
-  ], ['sass']);
+  ], ['sass:app']);
 
   gulp.watch([
     './'+paths.client_src+'/data/*.*'
