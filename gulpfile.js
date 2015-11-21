@@ -145,18 +145,22 @@ var componentPaths = {
  */
 gulp.task('bower_css', function() {
   return gulp.src([
+      './'+componentPaths.highlightJSDarkCSS,
+      './'+componentPaths.angularMaterialDatatablesCSS,
       //If you plan to compile everything together I would recommend commenting these back in
       // './'+componentPaths.rickshawCSS,
-      // './'+componentPaths.highlightJSDarkCSS,
       // './'+componentPaths.gridstackCSS,
       // './'+componentPaths.nvd3CSS,
-      './'+componentPaths.angularMaterialDatatablesCSS,
     ])
     .pipe(concat('_bower_components.scss'))
     .pipe(gulp.dest('./'+paths.client_src+'/sass/'));
 });
 
-gulp.task('bower', ['bower_css'], function() {
+/**
+ * $ gulp copy bower components
+ * description: 
+ */
+gulp.task('bower', function() {
   return gulp.src('./bower_components/**/*')
   .pipe(gulp.dest('./'+paths.build+'/bower_components'));
 });
@@ -241,7 +245,7 @@ gulp.task('sass:modern_register', function () {
  * $ gulp compile sass for app
  * description: 
  */
-gulp.task('sass:app', function () {
+gulp.task('sass:app', ['bower_css'], function () {
   return gulp.src([
     './'+paths.client_src+'/sass/app.scss'
   ])
@@ -316,7 +320,7 @@ gulp.task('jscontroller-copy', function () {
  * $ gulp compile js
  * description: 
  */
-gulp.task('js', ['bower_css'], function () {
+gulp.task('js', function () {
 
   gulp.src([
     componentPaths.jquery,
@@ -358,7 +362,6 @@ gulp.task('js', ['bower_css'], function () {
     componentPaths.angularCookies,
     componentPaths.angularMaterial,
     componentPaths.angularTouch,
-    componentPaths.angularMessages,
     componentPaths.angularSanitize,
     componentPaths.angularAnimate,
     componentPaths.angularAria,
@@ -369,12 +372,12 @@ gulp.task('js', ['bower_css'], function () {
     componentPaths.angularGoogleMaps,
     componentPaths.d3,
 
+    //Font Awesome Icons
+    componentPaths.angularFontAwesome,
+
     //Socket IO Functionality
     componentPaths.socketIO,
     componentPaths.angularSocketIO,
-
-    //Used in many places for animation
-    componentPaths.angularCountTo,
 
     //Used in most views to show examples, once you dont need the examples feel free to remove
     componentPaths.highlightJS,
@@ -383,7 +386,9 @@ gulp.task('js', ['bower_css'], function () {
 
     // Enable These If You Are Compiling All Plugins, Modules, Etc. Together
     // These will increase the initial file load and therefore make your app take longer to load
+    // componentPaths.angularMessages,
     // componentPaths.angularSmartTable,
+    // componentPaths.angularCountTo,
     // componentPaths.rickshaw,
     // componentPaths.angularRickshaw,
     // componentPaths.angularEasyPieChart,
@@ -394,7 +399,6 @@ gulp.task('js', ['bower_css'], function () {
     // componentPaths.chartJS,
     // componentPaths.angularChartJS,
     // componentPaths.moment,
-    // componentPaths.angularFontAwesome,
     // componentPaths.angularMaterialDatatables,
 
     './'+paths.client_src+'/app/libs/*.js', //This is where I put libraries that down have bower files
@@ -521,11 +525,21 @@ gulp.task('client_server', ['html','imagemin','svg','data','fonts','js','sass'],
  * Socket.IO documentation: http://socket.io/docs/
  * Restify documentation: http://restify.com/#server-api
  */
+gulp.task('server:lint', function () {
+  gulp.src(paths.server+'/server.js')
+    .pipe(jshint());
+});
 gulp.task('server', function () {
   nodemon({
     script: paths.server+'/server.js',
     ext: 'js',
-    ignore: ['gulpfile.js','client/'],
+    ignore: [
+      'gulpfile.js',
+      'client/',
+      'node_modules/',
+      'build/',
+    ],
+    tasks: ['server:lint'],
     env: { 'NODE_ENV': 'development' }
   });
 });

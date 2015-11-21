@@ -6,14 +6,14 @@ angular.module( 'app', [
   'ngMaterial',
   'ngAnimate',
   'ngCookies',
-  'ngMessages',
   'oc.lazyLoad',
   'btford.socket-io',
   'hljs',
   'angular-clipboard',
   'uiGmapgoogle-maps',
-  'countTo'
   // Enable These If You Are Compiling All Plugins, Modules, Etc. Together
+  // 'ngMessages',
+  // 'countTo'
   // 'smart-table',
   // 'angular-rickshaw',
   // 'easypiechart',

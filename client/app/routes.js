@@ -35,6 +35,9 @@ angular.module('app')
                       'bower_components/jquery.easy-pie-chart/dist/easypiechart.min.js',
                       'bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js',
 
+                      // Count To
+                      'bower_components/angular-count-to/build/angular-count-to.min.js',
+
                       'js/controllers/DashboardController.js'
                   ] 
               });
@@ -65,6 +68,16 @@ angular.module('app')
       templateUrl: 'views/buttons.html',
       data: {
         pageTitle:'Buttons'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/ButtonsController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('icons-font-awesome', {
@@ -73,6 +86,16 @@ angular.module('app')
       templateUrl: 'views/icons-font-awesome.html',
       data: {
         pageTitle:'Font Awesome Icons'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/IconsFontAwesomeController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('icons-material-design', {
@@ -81,6 +104,16 @@ angular.module('app')
       templateUrl: 'views/icons-material-design.html',
       data: {
         pageTitle:'Material Design Icons'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/IconsMaterialDesignController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('cards', {
@@ -89,6 +122,16 @@ angular.module('app')
       templateUrl: 'views/cards.html',
       data: {
         pageTitle:'Cards'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/CardsController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('tabs', {
@@ -97,6 +140,16 @@ angular.module('app')
       templateUrl: 'views/tabs.html',
       data: {
         pageTitle:'Tabs'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/TabsController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('notifications', {
@@ -105,6 +158,16 @@ angular.module('app')
       templateUrl: 'views/notifications.html',
       data: {
         pageTitle:'Notifications'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/NotificationController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('modals', {
@@ -113,6 +176,16 @@ angular.module('app')
       templateUrl: 'views/modals.html',
       data: {
         pageTitle:'Modals'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/ModalsController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('lists', {
@@ -121,6 +194,16 @@ angular.module('app')
       templateUrl: 'views/lists.html',
       data: {
         pageTitle:'Lists'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/ListsController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('basic-forms', {
@@ -129,6 +212,16 @@ angular.module('app')
       templateUrl: 'views/basic-forms.html',
       data: {
         pageTitle:'Basic Forms'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/FormsBasicController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('validation', {
@@ -137,6 +230,19 @@ angular.module('app')
       templateUrl: 'views/validation.html',
       data: {
         pageTitle:'Validation'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                      // ngMessages for Validation
+                      'bower_components/angular-messages/angular-messages.min.js',
+
+                      'js/controllers/ValidationController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('autocomplete', {
@@ -145,6 +251,16 @@ angular.module('app')
       templateUrl: 'views/autocomplete.html',
       data: {
         pageTitle:'Autocomplete'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/AutocompleteController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('sliders', {
@@ -153,6 +269,16 @@ angular.module('app')
       templateUrl: 'views/sliders.html',
       data: {
         pageTitle:'Sliders'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/SlidersController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('radio-buttons', {
@@ -161,6 +287,16 @@ angular.module('app')
       templateUrl: 'views/radio-buttons.html',
       data: {
         pageTitle:'Radio Buttons'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/RadioButtonsController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('basic-tables', {
@@ -169,6 +305,16 @@ angular.module('app')
       templateUrl: 'views/basic-tables.html',
       data: {
         pageTitle:'Basic Tables'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/BasicTablesController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('data-tables', {
@@ -177,6 +323,16 @@ angular.module('app')
       templateUrl: 'views/data-tables.html',
       data: {
         pageTitle:'Data Tables'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/DataTablesController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('smart-tables', {
@@ -185,6 +341,16 @@ angular.module('app')
       templateUrl: 'views/smart-tables.html',
       data: {
         pageTitle:'Smart Tables'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/SmartTablesController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('easy-pie-charts', {
@@ -193,6 +359,16 @@ angular.module('app')
       templateUrl: 'views/easy-pie-charts.html',
       data: {
         pageTitle:'Easy Pie Charts'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/EasyPieChartController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('rickshaw', {
@@ -201,6 +377,16 @@ angular.module('app')
       templateUrl: 'views/rickshaw.html',
       data: {
         pageTitle:'Rickshaw'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/RickshawController.js'
+                  ] 
+              });
+          }]
       }
   });
 
