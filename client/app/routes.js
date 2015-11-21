@@ -329,25 +329,10 @@ angular.module('app')
               return $ocLazyLoad.load({
                   name: 'app',
                   files: [
+                    'bower_components/angular-material-data-table/dist/md-data-table.min.js',
+                    'bower_components/angular-material-data-table/dist/md-data-table.min.css',
+
                     'js/controllers/DataTablesController.js'
-                  ] 
-              });
-          }]
-      }
-  })
-  .state('smart-tables', {
-      url: '/forms/smart-tables',
-      controller:'SmartTablesController',
-      templateUrl: 'views/smart-tables.html',
-      data: {
-        pageTitle:'Smart Tables'
-      },
-      resolve: {
-          deps: ['$ocLazyLoad', function($ocLazyLoad) {
-              return $ocLazyLoad.load({
-                  name: 'app',
-                  files: [
-                    'js/controllers/SmartTablesController.js'
                   ] 
               });
           }]
@@ -365,6 +350,8 @@ angular.module('app')
               return $ocLazyLoad.load({
                   name: 'app',
                   files: [
+                    'bower_components/jquery.easy-pie-chart/dist/angular.easypiechart.min.js',
+
                     'js/controllers/EasyPieChartController.js'
                   ] 
               });
@@ -383,6 +370,10 @@ angular.module('app')
               return $ocLazyLoad.load({
                   name: 'app',
                   files: [
+                    'bower_components/rickshaw/rickshaw.min.js',
+                    'bower_components/rickshaw/rickshaw.min.css',
+                    'bower_components/angular-rickshaw/rickshaw.js',
+
                     'js/controllers/RickshawController.js'
                   ] 
               });

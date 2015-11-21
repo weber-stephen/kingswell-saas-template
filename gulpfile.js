@@ -118,9 +118,6 @@ var componentPaths = {
   //Angular & Material Version of Datatables
   angularMaterialDatatables : paths.bower_components+'/angular-material-data-table/dist/md-data-table.min.js',
   angularMaterialDatatablesCSS : paths.bower_components+'/angular-material-data-table/dist/md-data-table.min.css',
-  
-  //An alternative to datatables
-  angularSmartTable : paths.bower_components+'/angular-smart-table/dist/smart-table.min.js',
 
   //SocketIO
   socketIO : paths.bower_components+'/socket.io-client/socket.io.js',
@@ -387,7 +384,6 @@ gulp.task('js', function () {
     // Enable These If You Are Compiling All Plugins, Modules, Etc. Together
     // These will increase the initial file load and therefore make your app take longer to load
     // componentPaths.angularMessages,
-    // componentPaths.angularSmartTable,
     // componentPaths.angularCountTo,
     // componentPaths.rickshaw,
     // componentPaths.angularRickshaw,

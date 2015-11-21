@@ -11,13 +11,15 @@ angular.module( 'app', [
   'hljs',
   'angular-clipboard',
   'uiGmapgoogle-maps',
+  
+  //Only use this if you are using the font awesome icons
+  'picardy.fontawesome',
+
   // Enable These If You Are Compiling All Plugins, Modules, Etc. Together
   // 'ngMessages',
   // 'countTo'
-  // 'smart-table',
   // 'angular-rickshaw',
   // 'easypiechart',
-  // 'picardy.fontawesome',
   // 'md.data.table',
   // 'gridshore.c3js.chart',
   // 'nvd3',
