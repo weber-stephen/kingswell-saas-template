@@ -9,19 +9,19 @@ angular.module( 'app', [
   'ngMessages',
   'oc.lazyLoad',
   'btford.socket-io',
-  // Enable These If You Are Compiling All Plugins, Modules, Etc. Together
+  'hljs',
+  'angular-clipboard',
   'uiGmapgoogle-maps',
+  'countTo'
+  // Enable These If You Are Compiling All Plugins, Modules, Etc. Together
   // 'smart-table',
   // 'angular-rickshaw',
   // 'easypiechart',
-  // 'hljs',
-  // 'angular-clipboard',
   // 'picardy.fontawesome',
   // 'md.data.table',
   // 'gridshore.c3js.chart',
   // 'nvd3',
   // 'chartjs',
-  'countTo'
 ])
 .config(function(uiGmapGoogleMapApiProvider) {
     

@@ -376,6 +376,11 @@ gulp.task('js', ['bower_css'], function () {
     //Used in many places for animation
     componentPaths.angularCountTo,
 
+    //Used in most views to show examples, once you dont need the examples feel free to remove
+    componentPaths.highlightJS,
+    componentPaths.angularHighlightJS,
+    componentPaths.angularClipboard,
+
     // Enable These If You Are Compiling All Plugins, Modules, Etc. Together
     // These will increase the initial file load and therefore make your app take longer to load
     // componentPaths.angularSmartTable,
@@ -389,9 +394,6 @@ gulp.task('js', ['bower_css'], function () {
     // componentPaths.chartJS,
     // componentPaths.angularChartJS,
     // componentPaths.moment,
-    // componentPaths.highlightJS,
-    // componentPaths.angularHighlightJS,
-    // componentPaths.angularClipboard,
     // componentPaths.angularFontAwesome,
     // componentPaths.angularMaterialDatatables,
 
@@ -523,6 +525,7 @@ gulp.task('server', function () {
   nodemon({
     script: paths.server+'/server.js',
     ext: 'js',
+    ignore: ['gulpfile.js','client/'],
     env: { 'NODE_ENV': 'development' }
   });
 });
