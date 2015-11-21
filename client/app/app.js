@@ -21,7 +21,7 @@ angular.module( 'app', [
   // 'gridshore.c3js.chart',
   // 'nvd3',
   // 'chartjs',
-  // 'countTo'
+  'countTo'
 ])
 .config(function(uiGmapGoogleMapApiProvider) {
     

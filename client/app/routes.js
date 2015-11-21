@@ -17,7 +17,6 @@ angular.module('app')
           deps: ['$ocLazyLoad', function($ocLazyLoad) {
               return $ocLazyLoad.load({
                   name: 'app',
-                  // insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
                   files: [
                       //Moment for time display
                       'bower_components/moment/min/moment.min.js',
@@ -48,6 +47,16 @@ angular.module('app')
       templateUrl: 'views/typography.html',
       data: {
         pageTitle:'Typography'
+      },
+      resolve: {
+          deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load({
+                  name: 'app',
+                  files: [
+                    'js/controllers/TypographyController.js'
+                  ] 
+              });
+          }]
       }
   })
   .state('buttons', {

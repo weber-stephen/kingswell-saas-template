@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "file": "_bower_components.scss",
+  "sources": [
+    "bower_components/angular-material-data-table/dist/md-data-table.min.css"
+  ],
+  "names": [],
+  "mappings": "AAAA"
+}

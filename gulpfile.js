@@ -1,23 +1,34 @@
-var gulp        = require('gulp'),
-    browserSync = require('browser-sync').create(),
-    sass        = require('gulp-sass'),
-    concat      = require('gulp-concat-sourcemap'),
-    imagemin    = require('gulp-imagemin'),
-    uglify      = require('gulp-uglify'),
-    pngquant    = require('imagemin-pngquant'),
-    restify     = require('restify'),
-    jf          = require('jsonfile'),
-    fs          = require('fs'),
-    express     = require('express')(),
-    http        = require('http').Server(express),
-    io          = require('socket.io')(http);
+var gulp            = require('gulp'),
+
+    //for development
+    browserSync     = require('browser-sync').create(),
+
+    //for css:
+    sass            = require('gulp-sass'),
+    autoprefixer    = require('gulp-autoprefixer'),
+    minifycss       = require('gulp-minify-css'),
+    rename          = require('gulp-rename'),
+    sourcemaps      = require('gulp-sourcemaps'),
+
+    //for js:
+    uglify          = require('gulp-uglify'),
+    mainBowerFiles  = require('gulp-main-bower-files'),
+    concat          = require('gulp-concat-sourcemap'),
+
+    //Image Minification
+    imagemin        = require('gulp-imagemin'),
+    pngquant        = require('imagemin-pngquant'),
+
+    //For NodeJS Server:
+    nodemon         = require('gulp-nodemon');
 
 var paths = {
-  src : 'src',
+  client_src : 'client',
   build : 'build',
   bower_components : 'bower_components',
   vendor : 'vendor',
   tpl : 'tpl',
+  server : 'server',
 };
 
 var componentPaths = {
@@ -134,192 +145,20 @@ var componentPaths = {
  */
 gulp.task('bower_css', function() {
   return gulp.src([
-      './'+componentPaths.rickshawCSS,
-      './'+componentPaths.highlightJSDarkCSS,
+      //If you plan to compile everything together I would recommend commenting these back in
+      // './'+componentPaths.rickshawCSS,
+      // './'+componentPaths.highlightJSDarkCSS,
+      // './'+componentPaths.gridstackCSS,
+      // './'+componentPaths.nvd3CSS,
       './'+componentPaths.angularMaterialDatatablesCSS,
-      './'+componentPaths.gridstackCSS,
-      './'+componentPaths.nvd3CSS
     ])
     .pipe(concat('_bower_components.scss'))
-    .pipe(gulp.dest('./'+paths.src+'/sass/'));
+    .pipe(gulp.dest('./'+paths.client_src+'/sass/'));
 });
+
 gulp.task('bower', ['bower_css'], function() {
   return gulp.src('./bower_components/**/*')
   .pipe(gulp.dest('./'+paths.build+'/bower_components'));
-});
-
-gulp.task('socketio_server',function() {
-
-  console.log('Starting Socket.IO Server');
-
-  function randRange(min,max) {
-    return Math.floor(Math.random() * max) + min;
-  }
-
-  var messages = ['Hello! How are you?','I love this system, where did you find it?','Another marketing ploy'];
-
-  function sendMessageIncoming() {
-    io.sockets.emit('messageIncoming',{profile:('profile'+(randRange(1,11))+'.jpg'),msg:messages[randRange(0,2)]});
-  }
-
-  io.on('connection', function (socket) {
-
-    console.log('User Connected To Socket.IO Server');
-
-    var serverLoadUpdateInterval = setInterval(function() {
-      console.log('Sending Server Load Update');
-      io.sockets.emit('serverLoad',{cpu:randRange(5,100),space:randRange(5,100),bandwidth:randRange(5,100),chartValue:randRange(5,100)});
-    },5000);
-    
-    setTimeout(function() {
-      console.log('Sending Message Incoming');
-      sendMessageIncoming();
-    },5000);
-    sendMessageIncoming();
-
-    socket.on('disconnect', function() {
-      console.log('User Disconnected From Socket.IO Server');
-      clearInterval(serverLoadUpdateInterval);
-    });
-
-  });
-
-  http.listen(3000, function(){
-    console.log('listening on *:3000');
-  });
-
-});
-
-/**
- * $ gulp api_server
- * description: launches api server using restify
- * Resify documentation: http://restify.com/#server-api
- */
-gulp.task('api_server', function() {
-  
-  function respond(json, req, res, next, callback) {
-    jf.readFile('build/data/'+json+'.json', function(err, data) { //if change detected read the sports.json 
-      if(callback) {
-        callback(req,data);
-      } else {
-        res.send(data);
-        next();
-      }
-    });
-  }
-
-  var server = restify.createServer();
-
-  server.use(restify.CORS());
-  server.use(restify.fullResponse());
-
-  //Search
-  server.get('/search/:query', function (req, res, next) {
-    respond('search',req,res,next);
-  });
-
-  //Username check
-  server.get('/usernameCheck/:query', function (req, res, next) {
-    respond('usernameCheck',req,res,next,function(req,data) {
-      var taken = false;
-      for (var i = data.length - 1; i >= 0; i--) {
-        if(req.params.query === data[i]) {
-          taken = true;
-          res.send({response:'taken'});
-          next();
-        }
-      }
-      if(!taken) {
-        res.send({response:'available'});
-        next();
-      }
-    });
-  });
-
-  server.get('/currentUser', function (req, res, next) {
-    respond('currentUser',req,res,next);
-  });
-
-  server.get('/messages', function (req, res, next) {
-    respond('messages',req,res,next);
-  });
-
-  server.get('/notifications', function (req, res, next) {
-    respond('notifications',req,res,next);
-  });
-
-  server.get('/tableData', function (req, res, next) {
-    respond('tableData',req,res,next);
-  });
-
-  server.get('/tasks', function (req, res, next) {
-    respond('tasks',req,res,next);
-  });
-
-  server.get('/meetings', function (req, res, next) {
-    respond('meetings',req,res,next);
-  });
-
-  server.get('/customers', function (req, res, next) {
-    respond('customers',req,res,next);
-  });
-
-  server.listen(8080, function() {
-    console.log('%s listening at %s', server.name, server.url);
-  });
-
-});
-
-/**
- * $ gulp client_server
- * description: launches client server
- */
-gulp.task('client_server', ['html','imagemin','svg','data','fonts','js','sass'], function() {
-
-  browserSync.init({
-      port:1899,
-      server: "./build"
-  });
-
-  gulp.watch([
-    './'+paths.src+'/sass/main.scss',
-    './'+paths.src+'/sass/basic_login.scss',
-    './'+paths.src+'/sass/modern_login.scss',
-    './'+paths.src+'/sass/**/*.scss'
-  ], ['sass']);
-
-  gulp.watch([
-    './'+paths.src+'/data/*.*'
-  ], ['data']);
-
-  gulp.watch([
-    './'+paths.src+'/img/*.jpg',
-    './'+paths.src+'/img/*.png',
-    './'+paths.src+'/img/*.gif',
-    './'+paths.src+'/img/**/*.jpg',
-    './'+paths.src+'/img/**/*.png',
-    './'+paths.src+'/img/**/*.gif',
-  ], ['imagemin']);
-
-  gulp.watch([
-      './'+paths.src+'/js/*.js',
-      './'+paths.src+'/app/*.js',
-      './'+paths.src+'/app/**/*.js'
-  ], ['js']);
-
-  gulp.watch([
-      './'+paths.src+'/app/controllers/*.js',
-      './'+paths.src+'/app/controllers/**/*.js',
-  ], ['jscontroller-copy']);
-
-  gulp.watch([
-    paths.src+'/*.html',
-    paths.src+'/app/tpl/*.html',
-    paths.src+'/app/tpl/*.tpl',
-    paths.src+'/app/views/*.html',
-    paths.src+'/app/partials/*.html'
-  ],['html']).on('change', browserSync.reload);
-
 });
 
 /**
@@ -328,14 +167,20 @@ gulp.task('client_server', ['html','imagemin','svg','data','fonts','js','sass'],
  */
 gulp.task('sass', function () {
   return gulp.src([
-    './'+paths.src+'/sass/main.scss',
-    './'+paths.src+'/sass/basic_login.scss',
-    './'+paths.src+'/sass/basic_register.scss',
-    './'+paths.src+'/sass/modern_login.scss',
-    './'+paths.src+'/sass/modern_register.scss',
-    './'+paths.src+'/sass/**/*.scss'
+    './'+paths.client_src+'/sass/main.scss',
+    './'+paths.client_src+'/sass/basic_login.scss',
+    './'+paths.client_src+'/sass/basic_register.scss',
+    './'+paths.client_src+'/sass/modern_login.scss',
+    './'+paths.client_src+'/sass/modern_register.scss',
+    './'+paths.client_src+'/sass/**/*.scss'
   ])
-  .pipe(sass().on('error', sass.logError))
+  .pipe(sass({ style: 'expanded', errLogToConsole: true }))
+  .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
+  .pipe(concat('main.css'))
+  .pipe(rename({suffix: '.min'}))
+  .pipe(sourcemaps.init())
+  .pipe(minifycss())
+  .pipe(sourcemaps.write())
   .pipe(gulp.dest('./'+paths.build+'/css'))
   .pipe(browserSync.stream());
 });
@@ -346,16 +191,16 @@ gulp.task('sass', function () {
  */
 gulp.task('html', function() {
 
-  gulp.src('./'+paths.src+'/*.html')
+  gulp.src('./'+paths.client_src+'/*.html')
   .pipe(gulp.dest('./'+paths.build));
 
-  gulp.src(['./'+paths.src+'/app/views/*.html'])
+  gulp.src(['./'+paths.client_src+'/app/views/*.html'])
   .pipe(gulp.dest('./'+paths.build+'/views'));
 
-  gulp.src(['./'+paths.src+'/app/partials/*.html'])
+  gulp.src(['./'+paths.client_src+'/app/partials/*.html'])
   .pipe(gulp.dest('./'+paths.build+'/partials'));
 
-  gulp.src(['./'+paths.src+'/app/tpl/*.html','./'+paths.src+'/app/tpl/*.tpl'])
+  gulp.src(['./'+paths.client_src+'/app/tpl/*.html','./'+paths.client_src+'/app/tpl/*.tpl'])
   .pipe(gulp.dest('./'+paths.build+'/tpl'));
 
 });
@@ -365,7 +210,7 @@ gulp.task('html', function() {
  * description: 
  */
 gulp.task('data', function () {
-  return gulp.src('./'+paths.src+'/data/*.json')
+  return gulp.src('./'+paths.client_src+'/data/*.json')
   .pipe(gulp.dest('./'+paths.build+'/data'));
 });
 
@@ -374,7 +219,7 @@ gulp.task('data', function () {
  * description: 
  */
 gulp.task('fonts', function () {
-  return gulp.src('./'+paths.src+'/fonts/*')
+  return gulp.src('./'+paths.client_src+'/fonts/*')
   .pipe(gulp.dest('./'+paths.build+'/fonts'));
 });
 
@@ -384,8 +229,8 @@ gulp.task('fonts', function () {
  */
 gulp.task('jscontroller-copy', function () {
   return gulp.src([
-    './'+paths.src+'/app/controllers/*.js',
-    './'+paths.src+'/app/controllers/**/*.js',
+    './'+paths.client_src+'/app/controllers/*.js',
+    './'+paths.client_src+'/app/controllers/**/*.js',
   ])
   .pipe(gulp.dest('./'+paths.build+'/js/controllers'));
 });
@@ -399,7 +244,7 @@ gulp.task('js', ['bower_css'], function () {
   gulp.src([
     componentPaths.jquery,
     componentPaths.materialDesignLite,
-    './'+paths.src+'/js/basic_login.js'
+    './'+paths.client_src+'/js/basic_login.js'
   ])
   .pipe(concat('basic_login.js',{sourcesContent:true}))
   .pipe(gulp.dest('./'+paths.build+'/js'));
@@ -407,7 +252,7 @@ gulp.task('js', ['bower_css'], function () {
   gulp.src([
     componentPaths.jquery,
     componentPaths.materialDesignLite,
-    './'+paths.src+'/js/basic_register.js'
+    './'+paths.client_src+'/js/basic_register.js'
   ])
   .pipe(concat('basic_register.js',{sourcesContent:true}))
   .pipe(gulp.dest('./'+paths.build+'/js'));
@@ -416,7 +261,7 @@ gulp.task('js', ['bower_css'], function () {
     componentPaths.jquery,
     componentPaths.materialDesignLite,
     componentPaths.vide,
-    './'+paths.src+'/js/modern_login.js'
+    './'+paths.client_src+'/js/modern_login.js'
   ])
   .pipe(concat('modern_login.js',{sourcesContent:true}))
   .pipe(gulp.dest('./'+paths.build+'/js'));
@@ -425,7 +270,7 @@ gulp.task('js', ['bower_css'], function () {
     componentPaths.jquery,
     componentPaths.materialDesignLite,
     componentPaths.vide,
-    './'+paths.src+'/js/modern_register.js'
+    './'+paths.client_src+'/js/modern_register.js'
   ])
   .pipe(concat('modern_register.js',{sourcesContent:true}))
   .pipe(gulp.dest('./'+paths.build+'/js'));
@@ -451,6 +296,9 @@ gulp.task('js', ['bower_css'], function () {
     componentPaths.socketIO,
     componentPaths.angularSocketIO,
 
+    //Used in many places for animation
+    componentPaths.angularCountTo,
+
     // Enable These If You Are Compiling All Plugins, Modules, Etc. Together
     // These will increase the initial file load and therefore make your app take longer to load
     // componentPaths.angularSmartTable,
@@ -469,25 +317,25 @@ gulp.task('js', ['bower_css'], function () {
     // componentPaths.angularClipboard,
     // componentPaths.angularFontAwesome,
     // componentPaths.angularMaterialDatatables,
-    // componentPaths.angularCountTo,
 
-    './'+paths.src+'/app/libs/*.js', //This is where I put libraries that down have bower files
-    './'+paths.src+'/app/*.js',
-    './'+paths.src+'/app/services/*.js',
-    './'+paths.src+'/app/services/**/*.js',
-    './'+paths.src+'/app/factories/*.js',
-    './'+paths.src+'/app/factories/**/*.js',
+    './'+paths.client_src+'/app/libs/*.js', //This is where I put libraries that down have bower files
+    './'+paths.client_src+'/app/*.js',
+    './'+paths.client_src+'/app/services/*.js',
+    './'+paths.client_src+'/app/services/**/*.js',
+    './'+paths.client_src+'/app/factories/*.js',
+    './'+paths.client_src+'/app/factories/**/*.js',
 
     //Needed for App
-    './'+paths.src+'/app/controllers/AppController.js',
-    './'+paths.src+'/app/controllers/UserSidebarController.js',
-    './'+paths.src+'/app/controllers/SearchController.js',
+    './'+paths.client_src+'/app/controllers/AppController.js',
+    './'+paths.client_src+'/app/controllers/UserSidebarController.js',
+    './'+paths.client_src+'/app/controllers/SearchController.js',
 
-    // './'+paths.src+'/app/controllers/*.js',
-    // './'+paths.src+'/app/controllers/**/*.js',
-    './'+paths.src+'/app/directives/*.js',
-    './'+paths.src+'/app/directives/**/*.js',
+    // './'+paths.client_src+'/app/controllers/*.js',
+    // './'+paths.client_src+'/app/controllers/**/*.js',
+    './'+paths.client_src+'/app/directives/*.js',
+    './'+paths.client_src+'/app/directives/**/*.js',
   ])
+  .pipe(uglify({mangle:false}))
   .pipe(concat('app.js',{sourcesContent:true}))
   .pipe(gulp.dest('./'+paths.build+'/js'));
 });
@@ -498,12 +346,12 @@ gulp.task('js', ['bower_css'], function () {
  */
 gulp.task('imagemin', function () {
     return gulp.src([
-      paths.src+'/img/*.jpg',
-      paths.src+'/img/*.gif',
-      paths.src+'/img/*.png',
-      paths.src+'/img/**/*.jpg',
-      paths.src+'/img/**/*.gif',
-      paths.src+'/img/**/*.png'
+      paths.client_src+'/img/*.jpg',
+      paths.client_src+'/img/*.gif',
+      paths.client_src+'/img/*.png',
+      paths.client_src+'/img/**/*.jpg',
+      paths.client_src+'/img/**/*.gif',
+      paths.client_src+'/img/**/*.png'
     ])
     .pipe(imagemin({
         progressive: true,
@@ -518,12 +366,78 @@ gulp.task('imagemin', function () {
  * description: 
  */
 gulp.task('svg', function () {
-  return gulp.src('./'+paths.src+'/img/icons/*.svg')
+  return gulp.src('./'+paths.client_src+'/img/icons/*.svg')
   .pipe(gulp.dest('./'+paths.build+'/img/icons'));
+});
+
+/**
+ * $ gulp client_server
+ * description: launches client server
+ */
+gulp.task('client_server', ['html','imagemin','svg','data','fonts','js','sass'], function() {
+
+  browserSync.init({
+      port:1899,
+      server: "./build"
+  });
+
+  gulp.watch([
+    './'+paths.client_src+'/sass/main.scss',
+    './'+paths.client_src+'/sass/basic_login.scss',
+    './'+paths.client_src+'/sass/modern_login.scss',
+    './'+paths.client_src+'/sass/**/*.scss'
+  ], ['sass']);
+
+  gulp.watch([
+    './'+paths.client_src+'/data/*.*'
+  ], ['data']);
+
+  gulp.watch([
+    './'+paths.client_src+'/img/*.jpg',
+    './'+paths.client_src+'/img/*.png',
+    './'+paths.client_src+'/img/*.gif',
+    './'+paths.client_src+'/img/**/*.jpg',
+    './'+paths.client_src+'/img/**/*.png',
+    './'+paths.client_src+'/img/**/*.gif',
+  ], ['imagemin']);
+
+  gulp.watch([
+      './'+paths.client_src+'/js/*.js',
+      './'+paths.client_src+'/app/*.js',
+      './'+paths.client_src+'/app/**/*.js'
+  ], ['js']);
+
+  gulp.watch([
+      './'+paths.client_src+'/app/controllers/*.js',
+      './'+paths.client_src+'/app/controllers/**/*.js',
+  ], ['jscontroller-copy']);
+
+  gulp.watch([
+    paths.client_src+'/*.html',
+    paths.client_src+'/app/tpl/*.html',
+    paths.client_src+'/app/tpl/*.tpl',
+    paths.client_src+'/app/views/*.html',
+    paths.client_src+'/app/partials/*.html'
+  ],['html']).on('change', browserSync.reload);
+
+});
+
+/**
+ * $ SocketIO & RESTify Server
+ * description: Launches Socket.IO Server To Listen and launches API server using restify
+ * Socket.IO documentation: http://socket.io/docs/
+ * Restify documentation: http://restify.com/#server-api
+ */
+gulp.task('server', function () {
+  nodemon({
+    script: paths.server+'/server.js',
+    ext: 'js',
+    env: { 'NODE_ENV': 'development' }
+  });
 });
 
 /**
  * $ gulp default
  * description: launches everything needed to build and view application
  */
-gulp.task('default', ['client_server','api_server','socketio_server']);
+gulp.task('default', ['client_server','server']);
