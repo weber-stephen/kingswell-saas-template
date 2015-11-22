@@ -3,7 +3,9 @@ AngularJS SaaS/Admin Template and Starter Kit
 
 Stop paying for an admin template when you can get more with this awesome little gem. Using AngularJS best practices, tons of examples, Gulp runs a Restify server and a Socket.IO server for realtime data streaming into your new front-end UI.
 
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/O0bRIxzrKHQ/0.jpg)](http://www.youtube.com/watch?v=O0bRIxzrKHQ "Kingswell SaaS/Admin Template")
+Demo: [http://stephenweber.io/kingswell_open/](http://stephenweber.io/kingswell_open/)
+
+![image](http://stephenweber.io/kingswell_open/Dashboard_600x367.jpg)
 
 ##Features
 
@@ -73,7 +75,7 @@ Stop paying for an admin template when you can get more with this awesome little
   ```
 
 ## Libraries/Tools/Tech
-![Angular](http://stephenweber.io/yelp-redesign/docs/angular.png)![Bower](http://stephenweber.io/yelp-redesign/docs/bower.png)![SASS](http://stephenweber.io/yelp-redesign/docs/sass.png)![Material Design](http://stephenweber.io/yelp-redesign/docs/material_design.png)![CSS3](http://stephenweber.io/yelp-redesign/docs/css3.png)![Browser Sync](http://stephenweber.io/yelp-redesign/docs/browser_sync.png)![Node Package Manager](http://stephenweber.io/yelp-redesign/docs/npm.png)![Gulp](http://stephenweber.io/yelp-redesign/docs/gulp.png)![Node Package Manager](http://stephenweber.io/yelp-redesign/docs/npm.png)
+![Angular](http://stephenweber.io/yelp-redesign/docs/angular.png)![Bower](http://stephenweber.io/yelp-redesign/docs/bower.png)![SASS](http://stephenweber.io/yelp-redesign/docs/sass.png)![Material Design](http://stephenweber.io/yelp-redesign/docs/material_design.png)![CSS3](http://stephenweber.io/yelp-redesign/docs/css3.png)![Browser Sync](http://stephenweber.io/yelp-redesign/docs/browser_sync.png)![Gulp](http://stephenweber.io/yelp-redesign/docs/gulp.png)![Node Package Manager](http://stephenweber.io/yelp-redesign/docs/npm.png)
 
 * [Angular Material](https://material.angularjs.org)
 * [Angular](https://angularjs.org)
